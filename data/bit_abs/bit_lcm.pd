@@ -1,0 +1,71 @@
+#N canvas 148 189 716 435 10;
+#X obj 194 194 f;
+#X obj 228 210 *;
+#X obj 221 173 f;
+#X obj 244 173 + 1;
+#X obj 194 156 t b b;
+#X msg 236 156 0;
+#X obj 255 278 int;
+#X obj 228 294 -;
+#X obj 228 261 t f f;
+#X obj 228 311 == 0;
+#X obj 228 328 sel 0 1;
+#X obj 228 244 /;
+#X obj 247 355 f;
+#X text 254 296 PROCURA RESTO;
+#X text 271 175 CONTADOR QUE AUMENTA O MULTIPLICADOR DO 1 NÚMERO ATÉ
+O RESTO SER 0, f 66;
+#X obj 194 48 inlet LIST;
+#X obj 194 85 list split 2;
+#X obj 194 122 unpack f f;
+#X obj 194 344 t b;
+#X obj 194 139 t b f b;
+#X floatatom 281 110 8 0 0 0 - - -, f 8;
+#X text 58 86 2 NUMEROS DE CADA VEZ;
+#X obj 228 227 t f f;
+#X obj 247 372 list append;
+#X text 273 355 LMC ENTRE 2 NÚMEROS;
+#X text 28 344 LOOP (1) ATÉ ENCONTRAR LMC;
+#X text 322 372 EMPACOTA RESULTADO COM RESTO DA LISTA INICIAL (QUANDO
+ESTA FOR > 2) E ENVIA PARA LOOP (2), f 45;
+#X text 276 86 QUANDO A LISTA TIVER APENAS 1 ÍTEM \, ESSE É O LMC
+FINAL;
+#X text 280 328 SE RESTO FOR 0 TERMINA LOOP (1) E ENVIA VALOR;
+#X text 301 243 LCM - VAI TESTANDO DIVISÕES ENTRE O 1 NÚMERO MULTIPLICADO
+POR UM ÍNDICE CRESCENTE DE INTEIROS COM O 2 NÚMERO \, ATÉ O RESTO
+SER 0 \, OU SEJA \, ENCONTRAR UM MULTIPLICADOR COMUM;
+#X text 335 110 LCM;
+#X obj 281 128 outlet LCM;
+#X text 157 14 ** CÁLCULO DO MENOR MÚLTIPLO COMUM ENTRE UMA LISTA
+DE NÚMEROS, f 61;
+#X connect 0 0 1 0;
+#X connect 1 0 22 0;
+#X connect 2 0 3 0;
+#X connect 3 0 2 1;
+#X connect 3 0 1 1;
+#X connect 4 0 0 0;
+#X connect 4 1 2 0;
+#X connect 5 0 2 1;
+#X connect 6 0 7 1;
+#X connect 7 0 9 0;
+#X connect 8 0 7 0;
+#X connect 8 1 6 0;
+#X connect 9 0 10 0;
+#X connect 10 0 18 0;
+#X connect 10 1 12 0;
+#X connect 11 0 8 0;
+#X connect 12 0 23 0;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 16 1 23 1;
+#X connect 16 2 20 0;
+#X connect 17 0 19 0;
+#X connect 17 1 11 1;
+#X connect 18 0 4 0;
+#X connect 19 0 4 0;
+#X connect 19 1 0 1;
+#X connect 19 2 5 0;
+#X connect 20 0 31 0;
+#X connect 22 0 11 0;
+#X connect 22 1 12 1;
+#X connect 23 0 16 0;
