@@ -1,4 +1,4 @@
-#N canvas 2 580 975 295 10;
+#N canvas 44 446 975 295 10;
 #X declare -lib ofelia;
 #X declare -path data -path data/bit_abs -path data/gui_abs -path data/memo
 -path data/fonts -path data/png;
@@ -734,7 +734,7 @@ NECESSÁRIO DE IMAGENS A PARTIR DO OFFSET;
 #X text 332 153 MOMENTOS DA CENA;
 #X text 592 153 BPM - NÚMEROS;
 #X text 922 113 BPM - SLIDER;
-#X floatatom 635 243 12 0 0 0 - - -;
+#X obj 484 224 int;
 #X connect 0 0 2 1;
 #X connect 1 0 5 0;
 #X connect 2 1 25 0;
@@ -771,8 +771,8 @@ NECESSÁRIO DE IMAGENS A PARTIR DO OFFSET;
 #X connect 31 0 33 1;
 #X connect 32 1 12 0;
 #X connect 32 4 13 0;
+#X connect 33 1 39 0;
 #X connect 34 1 15 0;
-#X connect 34 1 39 0;
 #X restore 239 261 pd TRANSPORT;
 #X obj 56 65 ofHead 100 1;
 #X obj 239 232 spigot;
@@ -862,16 +862,27 @@ NECESSÁRIO DE IMAGENS A PARTIR DO OFFSET;
 #X connect 16 1 14 0;
 #X connect 16 4 15 0;
 #X restore 401 146 pd HEADER;
-#X msg 335 129 0;
-#X msg 365 129 1;
+#X msg 335 130 0;
+#X msg 365 130 1;
 #X text 569 199 - VERSÃO COMPUTADOR RODANDO ÁUDIO EM [pd~];
 #X obj 261 169 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X text 569 119 - MODO GRANULAR;
 #X obj 149 214 del 100;
 #X obj 176 166 del 50;
-#X text 569 159 - 2 CABEÇALHO;
 #X text 569 139 - LIMITER NOS CANAIS;
+#X text 569 159 - 2 CABEÇALHO - SISTEMA DE GRAVAÇÃO;
+#X text 569 119 - LIGAR SISTEMA DE REPRODUÇÃO DA CENA;
+#N canvas 188 157 467 199 NOTA 0;
+#X text 39 31 - Sistema de composição - sequência master:;
+#X text 39 51 1 1 2 3 3 4 5 6 6 6 6 - compassos inteiros desses momentos
+;
+#X text 39 71 0.1 0.2 3 3 0.4 4 0.5 0.6 7 8 - . significa meio compasso
+do momento, f 63;
+#X text 39 91 ..1 2 ..3 4 5 6 ..7 8 - .. significa 1 beat do momento
+;
+#X text 39 121 - Implementar os clocks dessas divisões no [pd MASTER_PHASE]
+e o sistema de decodificação no reprodutor da cena;
+#X restore 816 119 pd NOTA;
 #X connect 1 0 5 0;
 #X connect 4 0 1 0;
 #X connect 11 0 4 0;
@@ -886,10 +897,10 @@ NECESSÁRIO DE IMAGENS A PARTIR DO OFFSET;
 #X connect 23 0 9 0;
 #X connect 24 0 10 0;
 #X connect 25 0 10 0;
-#X connect 28 0 36 0;
-#X connect 28 1 37 0;
+#X connect 28 0 35 0;
+#X connect 28 1 36 0;
 #X connect 31 0 30 0;
 #X connect 32 0 30 0;
 #X connect 34 0 7 1;
-#X connect 36 0 14 0;
-#X connect 37 0 7 0;
+#X connect 35 0 14 0;
+#X connect 36 0 7 0;

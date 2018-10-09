@@ -1,0 +1,437 @@
+** LOG DE PESQUISA E DESENVOLVIMENTO DO SOFTWARE ESMERIL
+
+
+- CONSIDERAÇÕES GERAIS:
+
+- ESMERIL é um reprodutor de músicas expandido - as músicas apresentadas na plataforma são compostas como "cenas" que podem ser reproduzidas e também manipuladas, alteradas, recompostas em tempo real pela pessoa ouvinte/usuária.
+
+- Optei por desenvolver o aplicativo numa perspectiva que considero orientada para um tipo de composição, com um padrão conhecido de parâmetros e gestos possíveis - isso pode limitar o espectro de criação para os músicos e de interação dos usuários, e talvez sacrifique um pouco da atratividade para usuários não informados nas lógicas subjacentes às escolhas feitas no aplicativo; por outro lado, sendo um reprodutor de cenas musicais pré-estabelecidas, acredito que a atração para a manipulação de parâmetros possa se dar para qualquer pessoa, na medida em que ela acompanha visualmente alterações automatizadas na cena, e pode tentar imitar gestos semelhantes.
+
+- Tentativa de ser o mais transparente (o menos obscuro) possível em relação aos parâmetros apresentados para controle, mas usando também uma linguagem (verbal/visual) simbólica quando for conveniente - isso se justifica pelo interesse em dialogar com pessoas de diferentes perspectivas e formações, num projeto de código aberto, que precisa ser compreensível e comunicável facilmente para poder circular e servir como ferramenta em diferentes contextos.
+
+
+-- FFMPEG SCREENCAST
+
+ffmpeg -f x11grab -s 1440x900 -r 16 -i :0.0+0,0 -s 720x450 -r 16 -c:v libx264 -crf 10 screencast.mp4
+
+
+-- WGET SITE IDENTIDADE VISUAL - RAFA
+
+wget --mirror -p --convert-links -erobots=off --no-parent http://www.dmarchi.org/client/esme/app/
+
+
+
+03/05/2018
+
+- Pesquisa de patchs de Pd para geração musical - Ed Kelly (ninjaTools)
+- Instalação OpenFrameworks no mac
+- Instalação e teste do Pof no Debian - no Ubuntu 14.04 não consegui rodar nem Ofelia nem Pof
+
+
+04/05/2018
+
+- Pesquisa de patchs de Pd para geração musical - chr15m (Chris McCormick) - GarageAcidLab
+
+
+05/05/2018
+
+- Pesquisa de patchs de Pd para geração musical - Martin Brinkmann - grainstates2
+
+
+06/05/2018 - 07/05/2108
+
+- [listbox] [listbox2] - Desenvolvimento de gestor de listas para sistema de memórias/presets
+
+
+13/05/2018
+
+- Início do desenvolvimento do mecanismo de áudio do aplicativo - Slicer sincronizado de 2 canais (futuramente 4) baseado em [phasor~] e [wrap~]
+- Tentativa (frustrada) de compilar a lib de externals [Pof] no Macbook (Ubuntu 14.04)
+
+
+14/05/2018
+
+- Continua desenvolvimento do mecanismo de áudio
+- Pesquisa Ninja Jam - Reprodução de áudios longos, mecanismo de slicer
+
+
+15/05/2018
+
+- Pesquisa em buffers circulares - vários testes
+- Desenvolvimento de app no PdDroidParty para simular subir áudios pra RAM - usando banco de samples de uma cena do NinjaJam
+- Descobri que não é usado buffer circular no NinjaJam, mas sim todos os arquivos são subidos para a RAM
+
+
+17 e 18/05/2018
+
+- Pesquisa e desenvolvimento das abstrações em Pd Vanilla para cálculo do LCM e do GCD - LCM usado para cálculo do tamanho do loop global entre diversos arquivos de áudio com mesmo BPM
+
+
+21 e 22/05/2018
+
+- Pesquisa e testes com a biblioteca POF no Debian - estudos para interface
+
+
+29/05/2018
+
+- Trabalho no mecanismo de slicer para encontrar um sistema de envelope eficiente na remoção de cliques no áudio durante mudança de offset na leitura do array
+- Pesquisa e testes das relações entre a fase principal e as fases dos leitores de cada camada
+
+
+30/05/2018
+
+- Resolvida relação entre fase principal do loop e fase dos leitores de cada camada
+- Resolvido envelope para remoção de cliques no offset
+- Desenvolvimento do sistema para abrir 21 áudios na memória RAM com nomes ordenados em 3 camadas de 7 arquivos
+
+
+31/05/2018
+
+- Aperfeiçoamento e início da abstração do mecanismo de leitura das camadas
+
+
+01/06/2018
+
+- Mecanismo linear para reprodução do áudio
+- Adaptação do gerador de envelopes para funcionar nos 2 modos - linear e slicer
+- Implementados mecanismos de FREEZE, RANGE, OFFSET
+
+
+02/06/2018
+
+- Implementado mecanismo de inversão de fase na reprodução linear e no modo slicer
+- [bit_track] - criada abstração com mecanismo de áudio de cada camada
+
+
+
+(ESMERIL.pd - [pd NOTAS])
+
+
+- NOVAS ABSTRAÇÕES DO SISTEMA DE MEMÓRIA - [param2] [memo] [listbox] etc
+
+
+(OFX_OFELIA_ANDROID.txt)
+
+
+
+01/08/2018
+
+- Início do desenvolvimento da interface programada na lib Ofelia no Pd
+- Definição de primeiras metas - criação de elementos básicos de interação como prática com Ofelia - botão, seletor (estilo radio), números (edição inteligente) e slider
+- Teste de conceito com lógica de grandes áreas com funções variáveis
+
+02/08/2018
+
+- Nova treta - Ofelia no Ubuntu 14.04 no Pd gerando cliques no áudio direto - tentar compilar denovo, testar sistemas diferentes pra ver se está tudo igual -- Debian parece OK - Não consegui compilar denovo por algum problema, ainda vou tentar denovo
+
+03/08/2018
+
+- Teste do exemplo alterado do Ofelia com patch do ESMERIL no fundo, selecionando as cenas já numa interface do Ofelia
+- Deu problema com os arquivos de áudio muito grandes quando tentei empacotar tudo junto no Android Studio - a solução deve ser armazenar os áudios numa pasta diferente, e encontrar os arquivos com o path - testando....... - Precisa colocar os arquivos de áudio separado do apk, mas pode mover depois para a pasta do aplicativo no Android/data sem problemas, ou fazer o download direto nessa pasta
+- Um problema era a declaração dos paths no app com Ofelia, que funciona diferente do modo do PdDroidParty, no qual era possível rodar o patch sem problemas. Foi preciso declarar os caminhos de todas as subpastas do projeto no patch principal (main.pd), e não declarar as dependências dentro de cada abstração, como estava feito anteriormente. Assim todas as abstrações e pastas de conteúdo foram encontradas e tudo funcionou corretamente.
+- Outro problema resolvido foi o carregamento dos áudios nas tabelas, que quebrava o app quando tentava carregar tudo o mais rápido possível (loop sem delay) - a solução é usar um delay entre cada arquivo aberto, ou mesmo fazer um carregador baseado em [metro] para abrir os arquivos em intervalos regulares - o que está implementado por enquanto.
+
+04, 05, 06, 07/08/2018
+
+- Compilação do Zicospital - demorei mas consegui compilar pela linha de comando, e tmabém importei o projeto no Android Studio e compilei - foi preciso comentar 2 linhas em um dos arquivos gradle - Achei importante realizar testes também com o Pof, para avaliar qual biblioteca e modelo de aplicativo é mais eficiente com os recursos, e com menor delay no uso - Descobri que os aplicativos exemplo do Pof (PofDroid e Zicospital) usam a lib OpenSL para operar o sistema de áudio no Android, por que ela dá uma latência menor do que a lib básica. Vou seguir testando isso para ver se é significativa a melhora, contrapondo ao fato do projeto Ofelia como um todo estar bem mais organizado que o Pof
+
+- Depois de um bom esforço, consegui rodar o patch do ESMERIL usado no PdDroidParty com todos os recursos no Android Studio + Ofelia, usando uma interface simples como teste
+
+- Medição de uso dos recursos do cpu com ESMERIL (Ofelia) em comparação ao NinjaJam (Pof) - inicialmente o NJ gerava uma carga significativamente menor no processamento, ficou claro que era preciso uma otimização no código do ESMERIL - a primeira medida testada foi remover o PLATE REVERB na parte de efeitos, por que é um patch relativamente grande, cheio de objetos de áudio, e com subjanelas rodando com [block~ 1]; a remoção já deixou o uso de recursos semelhante ao do NJ - acredito que usando o [rev2~] como reverb, e eliminando todos os objetos possíveis (principalmente de áudio) do patch, o resultado já estará OK para uso geral
+
+08/08/2018
+
+- Início do desenvolvimento da versão definitiva do aplicativo usando Ofelia
+- Removidas algumas partes desnecessárias do patch ESMERIL.pd (antiga parte do PdDroidParty)
+- Criado gerador de grid para divisão dos áudios de cada camada
+
+09/08/2018
+
+- [gui_grid] - finalização do gerador de divisões para os slices de cada camada
+
+10/08/2018
+
+- [gui_number] - caixa de números interativa modular
+
+11/08/2018
+
+- [gui_waveform] - gerador de forma de onda modular - início desenvolvimento
+
+12/08/2018
+
+- Planejamento (em papel) de desenvolvimento de interface e recursos do aplicativo
+
+13/08/2018
+
+- [gui_waveform] - finalização da engrenagem e parametrização da abstração no novo sistema de memória
+
+14/08/2018
+
+- Ajustes e parametrização usando [bit_param] dos objetos [gui_grid] [gui_waveform] [gui_number]
+
+15/08/2018
+
+- Teste do aplicativo compilando [freeverb~] para aprender a usar externals - SUCESSO! Reduz bastante cpu em relação ao [dattorroplate]
+
+16/08/2018
+
+- Inclui externals [z~] e [limiter~] do lib zexy pra usar como limiter nas saídas e caminhos do áudio
+- Testes de performance com muitos externals e patch do ESMERIL - na tablet e no celular de Thayná - na tablet ficou no limite, mas no celular nem roda direito, trava a interface
+- Planejamento e desenhos das interfaces em papel para orientar trabalho nos próximos dias
+
+17/08/2018
+
+- Testes com celular dos tamanhos da interface com 4 camadas
+- Definições de interface e conceito - só parte do ESMERIL mesmo, sem efeitos e mixer, pelo menos por enquanto - Desenhos e anotações das mudanças e decisões de interação no papel
+
+22/08/2018
+
+- Testes com mecanismo para desenhar formas de onda em um buffer e plotar o buffer para diminuir cpu por conta dos path preenchidos
+- Descobri que mesmo sem renderizar praticamente nada, apenas o texto indicando o uso do cpu, ficou marcando em média 35 na tablet e 28 no celular, um pouco menos do que quando estava renderizando tudo, mesmo com os paths
+
+23/08/2018
+
+- Teste comparativo entre Ofelia e Pof - criei um novo projeto usando Pof a partir do Zicospital, apenas com um fundo cinza e o número da carga de cpu plotada, da mesma maneira que o teste com Ofelia
+- Descobri que ambas as bibliotecas apresentaram resultados similares em relação ao uso de cpu medido pelo Pd - 35 em média nos dois testes
+- Descobri também que é preciso levar em conta que a velocidade do cpu do Android é ajustada dinamicamente de acordo com a demanda, ou com critérios que ainda não entendo bem
+- Provavelmente isso tem ligação com a diferença de medida que acontece quando a tela recebe toques constantes, quando a leitura fica menor, perto de 15, o que pode acontecer em função do aumento de velocidade automático do cpu quando há ações de toque, significando que o pd estará consumindo uma porcentagem menor do processamento total disponível
+- Fiquei decido por usar o Ofelia definitivamente, já que os resultados dos testes foram similiares, e a lib é mais desenvolvida, ampla e bem documentada do que a lib Pof
+
+24/08/2018
+
+- Reunião com Cristiano para apresentar o andamento do processo, os testes e decisão pela Ofelia, os cortes de interface para simplificar, e as funcionalidades que pretendo implementar
+
+27/08/2018
+
+- Início da atualização do mecanismo de áudio para a nova proposta - 4 canais de áudio, e sem efeitos por agora
+- Pesquisa sobre a nova versão do ofxPd usando pd 0.48-1 para resolver os objetos que faltam na compilação para Android na parte do sistema de memória - [memo]
+- Já baixei o ofxPd 1.7.0, falta só testar a compilação para ver se funciona - pode dar treta por que essa versão é compatível com o OF 0.10, precisa testar pra ver se vai funcionar com o OF 0.9.8/Ofelia
+
+29/08/2018
+
+- Início do desenvolvimento do sistema de cálculo de dimensões dinâmicas, para permitir ajustes mais fáceis e adaptação a diferentes telas
+- Inclusão de mais 1 camada no banco de áudios e sistema de carregamento - ainda não testado
+- !!! Descobri que o que estava zoando o áudio no lap quando roda o Ofelia era a taxa de frames da saída, que por padrão é 60 - reduzindo para 30 ou menos não dá mais problema no áudio usando o patch atual do ESMERIL
+- Alterada taxa de frames do aplicativo para 24, o que deve reduzir legal o uso do cpu nos dispositivos - testar!
+- Desenvolvimento da base do [gui_button] - falta interação, mas já desenha de acordo com dimensões globais
+
+30/08/2018
+
+- [gui_button_mode] - desenvolvida interação com toques e movimento no conjunto de botões (sistema de reação em família)
+
+31/08/2018
+
+- [gui_button_mode] - implementadas variáveis para tamanho X e Y independentes - para correção de proporção entre telas diversas
+- [gui_select] e [gui_button_select] - desenvolvimento da base do seletor de função em cada track
+
+01/09/2018
+
+- Resolver questão da versão do pd-vanilla suportada pela ofxPd/ofxOfelia - não funcionou compilação usando a nova versão da ofxPd, e ainda bugou minha cadeia de compilação...
+- Criei um novo diretório de trabalho no OF, e recompilei o exemplo do Ofelia do 0, testando o fluxo de trabalho anotado no LOG
+
+- Teste da redução de framerate na tablet e no celular usando patch sem nada, apenas plotagem do cpu
+- TABLET - (FPS 60) 30-50 pd / 5-10 profiler - (FPS 30) 30-37 pd / 5-6 profiler - (FPS 20) 28-33 pd / 4-5 profiler  -- MEMÓRIA 100MB
+- CELULAR - (FPS 60) 26-29 pd / 6-7 profiler - (FPS 30) 18-20 pd / 5-12 profiler - (FPS 20) 15-18 pd / 4-5 profiler  -- MEMÓRIA 12.9MB
+- Resultado: quanto menor a taxa de frames, mais economiza cpu - ver se fica ruim a renderização com 20 frames, senão usar 30
+
+02/09/2018
+
+- BUG - Stack overflow depois de um tempo rodando a interface - mensagens que recebe no android studio:
+
+stack overflow
+W/ofGraphics: ofPushStyle(): maximum number of style pushes << 32 reached, did you forget to pop somewhere?
+
+- Tentativas de arrumar
+- Descobri que o erro não é na interface/ofelia, mas sim algo relacionado ao patch do ESMERIL - quando retira o patch do projeto, não dá mais o erro (stack overflow)
+
+03/09/2018
+
+- Reunião com Cristiano - Sobre Figo/Ramon assumirem a parte de implementar o sync via rede entre 2 ou mais dispositivos com ESMERIL, e também a parte do menu de cenas, se quiserem adiantar
+
+05/09/2018
+
+- Teste 1 - Aumentado limite do uso de memória no aplicativo no android studio - android:largeHeap="true" - QUEBRA
+- Teste 2 - Interface do ESMERIL, mas sem o patch, apenas com 4 tabplays ligados aos 4 botões de modo de cada canal - NÃO QUEBRA
+- Teste 3 - Com ESMERIL em subpatch (não abstração) e com processamento nos [bit_track] desligado - QUEBRA
+- Teste 4 - Sem sistema de memória e sem os [bit_track] - QUEBROU DIFERENTE, FECHOU O APP - Profiler: processamento 9-10%, memória 101MB
+- Teste 5 - Denovo mesmo teste - QUEBROU DENOVO, depois que mudei a visualização para os botões - pode ter algo errado neles, ver sem eles como fica
+- Teste 6 - Teste sem nenhuma abstração de áudio, mas rodando leitores simples de tabelas como teste - NÃO QUEBROU - pode ser que a solução seja apenas colocar tudo a rodar como subpatch, que o problema pode estar no uso de abstrações de áudio
+- Teste 7 - Testei apenas com 1 abstração de áudio dentro de um subpatch - QUEBROU - mais um indício que não se deve usar abstrações de áudio
+- Teste 8 - Interface e patch de áudio com framerate denovo em 30 fps - QUEBRA
+
+- Descobrimos (eu, figo, glerm) que o app não quebra no Android 6.0, então o problema deve ser específico do Android 5.1.1 que está na minha tablet e no cel de Thayná
+
+08/09/2018
+
+- Tentativa de compilar Ofelia 2.0 e resolver problema - NÃO CONSEGUI COMPILAR
+
+09/09/2018
+
+- E-mail com relato do problema para Zack (Ofelia)
+
+10/09/2018
+
+- Seguimento no desenvolvimento da interface apesar do bug ainda estar presente
+- Reformulação do [gui_track] removendo o maior número possível de [ofSeparator] e [ofPushStyle] - sistema de renderização individualizada para cada parte da interface, com mecanismo para cálculo de offset por camada
+- Teste do app com novo [gui_track] - NÃO RESOLVE - O bug não tem a ver somente com o número de [ofPushStyle]
+- Teste elevando o minsdk para 21 com target em 22 - NÃO RESOLVE
+- Teste removendo renderização da FORMA DE ONDA (path2d complexo) - NÃO RESOLVE
+- Teste trocando patch do ESMERIL por 4 vocoders - NÃO RESOLVE
+
+- ENFIM - É bug mesmo do Ofelia quando sobrecarrega processamento ao que parece
+
+11/09/2018
+
+- Configuração dos fluxos de trabalho (conferindo/atualizando documentação do processo no outro LOG) para o Ofelia e Pof no Debian (Cristal)
+
+12/09/2018
+
+- Configuração dos fluxos de trabalho (conferindo/atualizando documentação do processo no outro LOG) para o Ofelia e Pof no Debian (Cristal)
+- Reunião com Figo - Ableton Link, Ofelia/POF, planejamento dos próximos passos
+
+13/09/2018
+
+- Testes para exibição de PNG como interface nos gui_abs
+
+14/09/2018
+
+- Pesquisa libs para extrair zip no OF - ofxZipArchive
+- Mecanismo para exibição de PNG como interface - [gui_button_mode]
+- Unificação dos botões - [gui_button_mode] [gui_button_select] viraram apenas [gui_button] com posições e relações entre conjuntos gerenciadas fora do botão
+- Criado sistema de interação em conjunto para botão de modo das camadas, limitando interação de arrastar para apenas o primeiro toque/arraste
+
+15/09/2018
+
+- [gui_button] - Implementado mecanismo para ligar e desligar renderização independente do PATH e PNG
+- [gui_button] - Unificadas as entradas de controle, agora é apenas 1 para as variáveis todas, mais as necessárias para interações externas
+- [gui_select] - Implementado sistema de interação em conjunto entre os [gui_select] de cada track
+
+17/09/2018
+
+- [gui_numbers] - Criada abstração para conter exibição das 3 caixas de número das tracks
+- [gui_audios] - Desenvolvimento da abstração com 8 botões estilo [radio] para seleção do áudio ativo em cada pista
+- [gui_operators] - Desenvolvimento da abstração com 6 botões TOGGLE/MOMENTARY para controle dos operadores das pistas
+- [gui_number] - Comecei a refazer caixa de números usando o [gui_button] e melhorando sistema de localização
+- [gui_numbers] - Comecei a refazer a abstração que contém 3 caixas de números
+
+18/09/2018
+
+- [gui_number] [gui_numbers] - Finalizadas abstrações com interface em path e/ou PNG, dimensionamento dinâmico, interações locais, limites e relações de conjunto
+- Primeiro teste conectando interface (slices/range/offset) a mecanismo de áudio - SUCESSO! - o consumo de cpu no lap fica o mesmo de quando não está reproduzindo áudio, mas com o dsp ligado
+
+19/09/2018
+
+- Teste com áudio na tablet/celular:
+-- 1 - Teste na tablet empacotando 1 cena junto com o aplicativo - FUNCIONA!!
+-- 2 - Celular de Thayná - LINDO! - cpu em 50-60
+
+- Fixado tamanho da tela para 800x450 ou similar (X fixo em 800 pixels), corrigindo proporção entre dispositivos
+- Mecanismo temporário para desenhar formas de onda quando muda de um sample pra outro - Preciso criar um sistema com 8 [gui_waveform] por canal que desenha todas as formas quando abre a cena, depois apenas liga/desliga render
+
+20/09/2018
+
+- [gui_grid] - refeito sistema de parâmetros, incluídos métodos para desenhar slice ativo e para controlar renderização independente de cada parte
+
+21/09/2018
+
+- [bit_track] - Corrigi sistema que envia slice ativo para interface - falta deixar ligado todo tempo, e não apenas quando está no modo 1 + flow
+- Encontro com Cristiano - conversa sobre parâmetros para a cena, e sobre a divulgação dos créditos do ESMERIL
+- Início do planejamento da comunicação sobre as cenas e da dinâmica do estúdio durante encontro
+
+24/09/2018
+
+- [ESMERIL] [bit_track] - Desenvolvido mecanismo de quantização de parâmetros no beat
+- [bit_mmc] - Implementado cálculo do mínimo múltiplo comum (mmc/lcm) entre as durações em compassos dos áudios no mecanismo de leitura dos áudios, o que garante que a fase de leitura dos áudios seja reiniciada sempre num ponto que não corta a reprodução de nenhum áudio
+- [bit_track] - Implementado controle de DSP e MUTE a partir do botão de modo da pista - conectado [gui_track] tb mudando desenho do range de acordo com estado do botão
+- [gui_waveforms] - Criada abstração que desenha as 8 formas de onda da camada quando termina de carregar cena, e renderiza apenas forma de onda do áudio ativo
+- Resolvido feedback na interface Ofelia de parâmetros da memória e interface local do [ESMERIL]
+
+25/09/2018
+
+- Trabalho de organização de prioridades e trabalho para próximas etapas - desenhos passados para Rafa adiantar trabalho e nos encontrarmos na sexta para implementar
+- Criação de documento no Drive sobre a comunicação sobre as cenas com os participantes - compartilhado com Figo
+
+26/09/2018
+
+- [gui_hslider] - Desenvolvimento de abstração de slider horizontal totalmente configurável baseado em 2 [gui_button]
+- [pd HEADER] - Botão e mecanismo para alternar entre 2 cabeçalhos distintos - CENA e TRANSPORTE
+- [pd TRANSPORT] - Desenhada primeira versão do cabeçalho de transporte
+
+27/09/2018
+
+- Reunião a distância com Figo para finalizar comunicação inicial sobre as cenas com galera dos selos
+- Encontro com Glerm para tirar dúvidas sobre o aplicativo e realizar testes
+
+28/09/2018
+
+- Interface e indentidade visual - Trabalho com Rafa na casa dele
+
+01/10/2018
+
+- Implementado relações de controle do BPM no cabeçalho da interface e patch [ESMERIL]
+- wget no site http://www.dmarchi.org/client/esme/
+- Aplicados os primeiros PNG mandados por Rafael e realizados ajustes de desenho nas formas
+- Criado sistema para correção da proporção de botões em dispositivos diferentes
+- [gui_number] - Modificada fonte para DINEngschriftStd.otf enviada por Rafael
+- [gui_number] - Modificada navegação no visor para eixo X - aproveita melhor a tela, resolve limites muito pequenos que interação vertical deixava em algumas das caixas de números
+- [gui_track] - Corrigida/organizada ordem de renderização das funções
+
+02/10/2018
+
+- [gui_button] - mudada parte de interação, agora usando [spigot], para tentar resolver problemas nos toques e releases
+
+03/10/2018
+
+- git commit / push - Versão dev7
+- [bit_memo] [bit_listbox] - corrigido erro por conta da versão do pd (0.47-1) necessária no Ofelia Android - substituído [text insert] por [text set] onde usava o primeiro
+- Padronização do sistema de memória das [bit_abs] e [gui_abs] usando o [bit_param] (antigo [bit_param2])
+- [bit_track] - Implementadas funções de manipulação das tracks - reformulado mecanismo das [bit_track]
+
+04/10/2018
+
+- Revisado mecanismo dos manipuladores e corrigida exibição do slice ativo na interface
+- [bit_track] - Criado gerador de patterns
+
+05/10/2018
+
+- Revisado mecanismo de gravação e reprodução de momentos - funciona OK - gera cliques no laptop com o Ofelia rodando junto, se separar patch de áudio em [pd~] deve resolver os drops de áudio em funções mais demoradas como mudança de cena
+- [bit_listbox] - Ampliado número de slots de memória para 64 (NÚMERO MÁXIMO DE MOMENTOS POR CENA)
+- PNG - atualizados PNG's produzidos por Rafael, incluindo os que ainda não tinha
+- [gui_hslider] - Finalizada interface do slider horizontal com trilha tipo mesa de som
+- [gui_number] - Corrigidas proporções das caixas de números, inclusive se adaptando aos diferentes dispositivos
+- [gui_number] - Aplicado espaçamento de caracteres 0.9
+
+06/10/2018
+
+- METADADOS - [pd LOAD_SCENE] - mudado nome do arquivo de metadados para "meta", contendo na linha 1 o BPM e DIVISÃO DO COMPASSO (Ex.: 140 4) e depois a lista dos áudios
+- Incluída possibilidade de FRAÇÕES DE BPM no projeto original; slider de BPM quantizado para 400 unidades de desvio do original; caixa de números do BPM exibe apenas números inteiros, mas o valor que manipula pode ser float
+- [gui_numbers] - Melhorada interação entre números, limites funcionando perfeito agora
+- [gui_wavetouch] - Desenvolvida área multitoques para interagir com forma de onda, e as 2 interações com 1 toque previstas - falta interações com 2 e 3 toques
+
+07/10/2018
+
+- [gui_wavetouch] - Implementadas interações com 2 toques (seta e dimensiona range/offset) e 3 toques (reseta range/offset) - TESTAR NA TABLET
+
+08/10/2018
+
+- [gui_granulartouch] [bit_grain] [bit_multigranular] - Modo MULTIGRANULAR implementado e testado - 6 grãos no máximo por canal (é fácil aumentar ou reduzir agora) - FICOU FODA!
+
+09/10/2018
+
+- 
+
+
+BUGS (VERIFICAR SE JÁ SOLUCIONEI - ACREDITO QUE SIM)
+
+- [gui_button] - problema no release dos multitoques, tem um problema de indexação dos releases - quando toca 1 e segura, depois toca o 2 e segura, se larga o 2 toque, ele libera o 1 (trocado)
+- [gui_number] - interferência entre os scroll de 2 botões
+- [gui_radio] - quando usa modo slide, bloquear entrada de novos toques, por que dá problema (ver se depois de resolver o erro do botão em si, resolve esse também)
+- [gui_radio] - usar slide em 2 tracks diferentes também não está funcionando, ver como resolver
+
+
+IDEIAS PRA DEPOIS DESSE RELEASE (OU AGORA SE DER TEMPO)
+
+- Na seleção do áudio ativo na camada, se clica 2 vezes num áudio seta slices/range/offset e demais parâmetros (randoms, etc) para memória do momento em que a cena está, ou seta para 0 offset, e slices/range na divisão em beats do áudio
+- Ainda na seleção de áudio, implementar o slide entre camadas diferentes, inclusive identificando se é slide a partir de 1 ou 2 cliques, abrindo como está ou carregando da memória os dados de reprodução
+- Botões de interação funcionam quando o slicer está desligado, religando com a interação específica temporariamente enquanto mantém pressionado
+

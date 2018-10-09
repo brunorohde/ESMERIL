@@ -87,7 +87,7 @@
 #X connect 28 0 21 0;
 #X restore 60 1029 pd ENVELOPE_GENERATOR;
 #X obj 847 228 hradio 15 1 0 8 \$0-sample_gui \$0-sample_gui_set empty
-0 -8 0 10 -262144 -1 -1 3;
+0 -8 0 10 -262144 -1 -1 7;
 #X obj 44 109 wrap~;
 #X text 971 226 SAMPLE;
 #X obj 195 649 samphold~;
