@@ -1,4 +1,4 @@
-#N canvas 44 446 975 295 10;
+#N canvas 0 580 975 295 10;
 #X declare -lib ofelia;
 #X declare -path data -path data/bit_abs -path data/gui_abs -path data/memo
 -path data/fonts -path data/png;
@@ -878,9 +878,9 @@ NECESSÁRIO DE IMAGENS A PARTIR DO OFFSET;
 ;
 #X text 39 71 0.1 0.2 3 3 0.4 4 0.5 0.6 7 8 - . significa meio compasso
 do momento, f 63;
-#X text 39 91 ..1 2 ..3 4 5 6 ..7 8 - .. significa 1 beat do momento
+#X text 39 101 ..1 2 ..3 4 5 6 ..7 8 - .. significa 1 beat do momento
 ;
-#X text 39 121 - Implementar os clocks dessas divisões no [pd MASTER_PHASE]
+#X text 39 131 - Implementar os clocks dessas divisões no [pd MASTER_PHASE]
 e o sistema de decodificação no reprodutor da cena;
 #X restore 816 119 pd NOTA;
 #X connect 1 0 5 0;
