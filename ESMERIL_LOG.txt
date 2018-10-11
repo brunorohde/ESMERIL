@@ -1,4 +1,4 @@
-** LOG DE PESQUISA E DESENVOLVIMENTO DO SOFTWARE ESMERIL
+** LOG DE PESQUISA E DESENVOLVIMENTO DO SOFTWARE ESMERIL - BRUNO FARIA ROHDE
 
 
 - CONSIDERAÇÕES GERAIS:
@@ -418,7 +418,16 @@ W/ofGraphics: ofPushStyle(): maximum number of style pushes << 32 reached, did y
 
 09/10/2018
 
-- 
+- Revisão do mecanismo do multigranular - depois de testes encontrei alguns problemas com cliques, e precisei rafazer algumas partes do mecanismo - no fim ficou funcionando corretamente
+
+10/10/2018
+
+- Reformulação do sistema de comunicação entre os patchs da interface e mecanismo de áudio - padronização dos BUS de comunicação para uso na versão que roda o áudio em segunda instância
+- granularBus / trackBus / headerBus / sceneBus / dataBus
+- [gui_waveform] [bit_waveform] - separadas abstrações que desenham formas de onda, para poder rodar áudio e interface em instâncias separadas
+- Implementado mecanismo de abertura e reprodução das cenas - segunda linha do arquivo "meta" define a sequência master
+- Gerado apk temporário para testes e uso no vídeo
+
 
 
 BUGS (VERIFICAR SE JÁ SOLUCIONEI - ACREDITO QUE SIM)
