@@ -428,14 +428,12 @@ W/ofGraphics: ofPushStyle(): maximum number of style pushes << 32 reached, did y
 - Implementado mecanismo de abertura e reprodução das cenas - segunda linha do arquivo "meta" define a sequência master
 - Gerado apk temporário para testes e uso no vídeo
 
+13/10/2018
 
+- PESQUISA - descobri que o que gerava a quebra de blocos de áudio no gerador de pattern era o redimensionamento de tabela durante a reprodução de áudio - redimensionar tabelas é super pesado nesse contexto de desenvolvimento, sempre evitar durante o DSP
+- [bit_track] - Mudança no gerador de pattern, que agora usa loop com [del 0] em vez de usar [until] e uma tabela de tamanho fixo em 256 (máximo de slices)
+- [bit_grain] - Remoção dos [s~] e [r~] para aliviar processamento - seguindo dicas da referência listada abaixo
 
-BUGS (VERIFICAR SE JÁ SOLUCIONEI - ACREDITO QUE SIM)
-
-- [gui_button] - problema no release dos multitoques, tem um problema de indexação dos releases - quando toca 1 e segura, depois toca o 2 e segura, se larga o 2 toque, ele libera o 1 (trocado)
-- [gui_number] - interferência entre os scroll de 2 botões
-- [gui_radio] - quando usa modo slide, bloquear entrada de novos toques, por que dá problema (ver se depois de resolver o erro do botão em si, resolve esse também)
-- [gui_radio] - usar slide em 2 tracks diferentes também não está funcionando, ver como resolver
 
 
 IDEIAS PRA DEPOIS DESSE RELEASE (OU AGORA SE DER TEMPO)
@@ -444,3 +442,19 @@ IDEIAS PRA DEPOIS DESSE RELEASE (OU AGORA SE DER TEMPO)
 - Ainda na seleção de áudio, implementar o slide entre camadas diferentes, inclusive identificando se é slide a partir de 1 ou 2 cliques, abrindo como está ou carregando da memória os dados de reprodução
 - Botões de interação funcionam quando o slicer está desligado, religando com a interação específica temporariamente enquanto mantém pressionado
 
+
+
+REFERÊNCIA DE PESQUISA
+
+- Dicas de eficiência usando LibPd, comentários de um desenvolvedor da RjDj
+https://www.reddit.com/r/puredata/comments/4n71w7/can_a_patch_be_too_complicated_to_use_with/
+
+* learn to understand what types of processes and individual objects are CPU expensive - some off the top of my head : tabread4~ , cos~ , using lots of oscillators, fft type stuff, - try to write the same processes with cheaper objects rather more expensive ones ( even though it may be much easier )
+
+* use switch~ extensively to resource manage exactly what needs to be on and off in the patch at any one moment, always be aware of how much stuff is on at any one time, monitor CPU loading using cputime, look at short term, peaks and also long averages
+
+* in LibPd specifically - don't use throw~ catch~ send~ receive~ where possible, they are apparently quite expensive, its better to make direct audio connections
+
+* synthesise sometimes, but also use sound file playback from RAM, perhaps in various algorithmically controlled ways
+
+* working with mono files / voices where possible

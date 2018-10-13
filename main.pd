@@ -484,7 +484,7 @@ NECESSÁRIO DE IMAGENS A PARTIR DO OFFSET;
 #X connect 87 0 84 0;
 #X restore 354 61 pd RESOURCES;
 #X obj 149 147 t b b;
-#X text 569 179 - MENU DE CENAS;
+#X text 559 169 - MENU DE CENAS;
 #N canvas 342 240 440 325 HEADER 0;
 #N canvas 47 475 1214 353 SCENE 0;
 #X obj 262 190 sel 1;
@@ -934,14 +934,14 @@ DA CENA;
 #X restore 401 126 pd HEADER;
 #X msg 335 110 0;
 #X msg 365 110 1;
-#X text 569 199 - VERSÃO COMPUTADOR RODANDO ÁUDIO EM [pd~];
+#X text 559 189 - VERSÃO COMPUTADOR RODANDO ÁUDIO EM [pd~];
 #X obj 261 169 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 149 214 del 100;
 #X obj 176 166 del 50;
-#X text 569 139 - LIMITER NOS CANAIS;
-#X text 569 159 - 2 CABEÇALHO - SISTEMA DE GRAVAÇÃO;
-#X text 569 119 - LIGAR SISTEMA DE REPRODUÇÃO DA CENA;
+#X text 559 129 - LIMITER NOS CANAIS;
+#X text 559 149 - 2 CABEÇALHO - SISTEMA DE GRAVAÇÃO / SYNC / NOMES
+DAS CENAS;
 #X connect 1 0 5 0;
 #X connect 4 0 1 0;
 #X connect 11 0 4 0;
