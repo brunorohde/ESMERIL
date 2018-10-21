@@ -433,15 +433,57 @@ W/ofGraphics: ofPushStyle(): maximum number of style pushes << 32 reached, did y
 - PESQUISA - descobri que o que gerava a quebra de blocos de áudio no gerador de pattern era o redimensionamento de tabela durante a reprodução de áudio - redimensionar tabelas é super pesado nesse contexto de desenvolvimento, sempre evitar durante o DSP
 - [bit_track] - Mudança no gerador de pattern, que agora usa loop com [del 0] em vez de usar [until] e uma tabela de tamanho fixo em 256 (máximo de slices)
 - [bit_grain] - Remoção dos [s~] e [r~] para aliviar processamento - seguindo dicas da referência listada abaixo
+- [bit_track] - Implementados LIMITERS no multigranular e nas saídas L/R usando externals [limiter~] e [z~] da lib zexy
+
+14/10/2018
+
+- Pesquisa sobre [abl_link~] - como compilar no Android - melhor link encontrado: https://forum.openframeworks.cc/t/how-to-use-ableton-link-with-ofxpd/27240/3
+
+15/11/2018
+
+- Desenhado o cabeçalho de informações da cena
+- Atualizados PNGs do botão PIN
+- Criado mecanismo para exibir nome da cena e do artista cortando linhas de acordo para nomes grandes
+- Início do sistema de gravação - desenvolvido mecanismo para montar nome da gravação
+
+18/10/2018
+
+- Planejamento para reunião com Cristiano
+- Planejamento de atividades para finalização dessa etapa de programação
+- Planejamento para as oficinas de formação com equipe, apresentação coletiva do software e dinâmica de trabalho no laboratório
+- Pequenas correções no código
+
+19/10/2018
+
+- Reunião com Cristiano - definição dos créditos e planejamento de trabalho antes e durante evento
+
+20/10/2018
+
+- Mudanças na estrutura de pastas - unificação da pasta de abstrações /data/abs - criação da pasta /data/scenes - pasta /memo agora fica dentro da pasta de cada cena
+- Teste de APK usando o [ofSystemLoadDialog] - não funciona no Android
+- Finalização do sistema de GRAVAÇÃO - FALTA CONECTAR E TESTAR NO ANDROID
+- [bit_waveform] - Alterado loop de desenho das ondas, removendo [until] e usando [del] com atraso de segurança
+- [gui_wavetouch] - Resolvido problema para setar range/offset clicando com 2 dedos e segurando
+
+21/10/2018
+
+- Pesquisa sobre uso de memória e dicas para áudio no Android - tentativa de resolver crash quando carrega áudios
+- BUG RESOLVIDO - CRASHS QUANDO CARREGAVA CENA - Descobri que o que quebrava o aplicativo era o redimensionamento de tabelas feito pelo [soundfiler] SEM DESLIGAR DSP - SOLUÇÃO: Desligar dsp geral, carregar arquivos/redimensionar tabelas, depois religar dsp geral
+- git commit e novo APK enviado pra galera
 
 
 
-IDEIAS PRA DEPOIS DESSE RELEASE (OU AGORA SE DER TEMPO)
+IDEIAS PRA DEPOIS DESSE RELEASE
 
+- FX / MIXER / EDIÇÃO DE CENA / AUTOMAÇÕES
+- Ableton Link
+- Downloads das cenas automático pelo app, incluindo mecanismo para descompactar os arquivos das cenas usando addon pra Zip do OFX
+- Alterações em volume no mixer refletem na escala das ondas exibidas na tela
 - Na seleção do áudio ativo na camada, se clica 2 vezes num áudio seta slices/range/offset e demais parâmetros (randoms, etc) para memória do momento em que a cena está, ou seta para 0 offset, e slices/range na divisão em beats do áudio
 - Ainda na seleção de áudio, implementar o slide entre camadas diferentes, inclusive identificando se é slide a partir de 1 ou 2 cliques, abrindo como está ou carregando da memória os dados de reprodução
 - Botões de interação funcionam quando o slicer está desligado, religando com a interação específica temporariamente enquanto mantém pressionado
-
+- Janela intermediária na abertura de cenas com texto/infos sobre a cena/artista
+- Popup final da cena - tocar denovo ou voltar para menu
 
 
 REFERÊNCIA DE PESQUISA

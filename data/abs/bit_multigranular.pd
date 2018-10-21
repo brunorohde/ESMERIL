@@ -1,5 +1,4 @@
-#N canvas 246 475 349 279 10;
-#X text 121 196 FUNDAMENTAL LIMITER;
+#N canvas 99 390 349 279 10;
 #X obj 99 222 outlet~;
 #X obj 100 48 bit_grain \$1 \$2 \$3 0;
 #X obj 100 67 bit_grain \$1 \$2 \$3 1;
@@ -7,9 +6,9 @@
 #X obj 100 105 bit_grain \$1 \$2 \$3 3;
 #X obj 100 124 bit_grain \$1 \$2 \$3 4;
 #X obj 100 143 bit_grain \$1 \$2 \$3 5;
-#X connect 2 0 1 0;
-#X connect 3 0 1 0;
-#X connect 4 0 1 0;
-#X connect 5 0 1 0;
-#X connect 6 0 1 0;
-#X connect 7 0 1 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 0 0 0;
