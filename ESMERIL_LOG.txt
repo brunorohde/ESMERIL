@@ -470,6 +470,7 @@ W/ofGraphics: ofPushStyle(): maximum number of style pushes << 32 reached, did y
 - Pesquisa sobre uso de memória e dicas para áudio no Android - tentativa de resolver crash quando carrega áudios
 - BUG RESOLVIDO - CRASHS QUANDO CARREGAVA CENA - Descobri que o que quebrava o aplicativo era o redimensionamento de tabelas feito pelo [soundfiler] SEM DESLIGAR DSP - SOLUÇÃO: Desligar dsp geral, carregar arquivos/redimensionar tabelas, depois religar dsp geral
 - git commit e novo APK enviado pra galera
+- Implementado e testado sistema de memória dos momentos - novo arquivo na pasta das cenas - "memo"
 
 
 

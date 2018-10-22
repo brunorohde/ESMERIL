@@ -8,6 +8,7 @@ Coordenação e desenvolvimento - Bruno Rohde
 Pesquisa e concepção - Bruno Rohde, Cristiano Figueiró, Guilherme Soares, Rafael De Marchi
 Design de marca e interface - Rafael De Marchi
 
+
 Agradecimentos:
 
 Miller Puckette - Pure Data - http://msp.ucsd.edu/
