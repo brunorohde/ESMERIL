@@ -5,15 +5,20 @@ http://esmeril.ufba.br/
 Equipe:
 
 Coordenação e desenvolvimento - Bruno Rohde
+
 Pesquisa e concepção - Bruno Rohde, Cristiano Figueiró, Guilherme Soares, Rafael De Marchi
+
 Design de marca e interface - Rafael De Marchi
 
 
 Agradecimentos:
 
 Miller Puckette - Pure Data - http://msp.ucsd.edu/
+
 Zack Lee - lib Ofelia - https://github.com/cuinjune/ofxOfelia
+
 Ed Kelly - NinjaTools - http://sharktracks.co.uk/html/ninjaTools.html
+
 Comunidade Pure Data
 
 
