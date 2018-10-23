@@ -17,7 +17,7 @@
 0 10 -262144 -1 -1;
 #X obj 56 153 bng 15 250 50 0 \$0-click0 \$0-click0_set empty 17 7
 0 10 -262144 -1 -1;
-#X obj 56 153 cnv 15 15 15 \$0-canvas0 \$0-canvas0_set 0 5 8 0 10 -262144
+#X obj 56 153 cnv 15 15 15 \$0-canvas0 \$0-canvas0_set 0 5 8 0 10 -166441
 -66577 0;
 #X obj 76 153 cnv 15 15 15 \$0-canvas1 \$0-canvas1_set 1 5 8 0 10 -262144
 -66577 0;
@@ -30,7 +30,7 @@
 #X obj 156 153 cnv 15 15 15 \$0-canvas5 \$0-canvas5_set 5 5 8 0 10
 -262144 -66577 0;
 #X obj 176 153 cnv 15 15 15 \$0-canvas6 \$0-canvas6_set 6 5 8 0 10
--166441 -66577 0;
+-262144 -66577 0;
 #X obj 196 153 cnv 15 15 15 \$0-canvas7 \$0-canvas7_set 7 5 8 0 10
 -262144 -66577 0;
 #X obj 57 131 cnv 15 110 15 \$0-bg2 \$0-bg2_set empty 20 12 0 14 -191407
@@ -2994,8 +2994,8 @@ trim;
 #X connect 45 3 32 0;
 #X connect 45 4 33 0;
 #X connect 45 5 34 0;
-#X connect 45 6 41 0;
 #X connect 45 6 47 0;
+#X connect 45 7 41 0;
 #X connect 47 0 46 0;
 #X restore 51 54 pd EXTERNAL_CONTROL;
 #X text 256 125 AUTO WRITE;

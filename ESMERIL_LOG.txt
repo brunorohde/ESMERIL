@@ -20,6 +20,10 @@ ffmpeg -f x11grab -s 1440x900 -r 16 -i :0.0+0,0 -s 720x450 -r 16 -c:v libx264 -c
 wget --mirror -p --convert-links -erobots=off --no-parent http://www.dmarchi.org/client/esme/app/
 
 
+-- CONVERSOR DE ÁUDIOS - FFMPEG - MIXA PRA 1 CANAL E FORÇA SAMPLE RATE E CODEC
+
+mkdir CONVERTIDOS && find -type f -name "*.wav" | xargs -n 1 bash -c 'ffmpeg -i "$0" -vn -c:a pcm_s16le -af aresample=resampler=soxr -ar 44100 -ac 1 "CONVERTIDOS/${0%.*}.wav"'
+
 
 03/05/2018
 
@@ -471,6 +475,17 @@ W/ofGraphics: ofPushStyle(): maximum number of style pushes << 32 reached, did y
 - BUG RESOLVIDO - CRASHS QUANDO CARREGAVA CENA - Descobri que o que quebrava o aplicativo era o redimensionamento de tabelas feito pelo [soundfiler] SEM DESLIGAR DSP - SOLUÇÃO: Desligar dsp geral, carregar arquivos/redimensionar tabelas, depois religar dsp geral
 - git commit e novo APK enviado pra galera
 - Implementado e testado sistema de memória dos momentos - novo arquivo na pasta das cenas - "memo"
+- Atualizados PNG's - incluídos fundo e marca da abertura e fundo do menu de cenas
+- SPLASH SCREEN - Criada abertura com marca do aplicativo e ordenada inicialização carregando PNG's em ordem
+- COR DO BACKGROUND - Mudada para preto usando android:background="#000000" no arquivo /res/layout/main_layout.xml
+
+22/10/2018
+
+- Incluídos CRÉDITOS no patch
+- Sistema de GRAVAÇÃO finalizado e testado
+- Atualizados PNG com erros e novos - ABERTURA, CRÉDITOS
+- Exportado novo APK
+- Gravado vídeo de apresentação/teste do ESMERIL
 
 
 
