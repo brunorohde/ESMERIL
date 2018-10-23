@@ -2,6 +2,7 @@ ESMERIL - Reprodutor musical expandido - Pure Data (Pd) / Ofelia
 
 http://esmeril.ufba.br/
 
+
 Equipe:
 
 Coordenação e desenvolvimento - Bruno Rohde
@@ -9,6 +10,10 @@ Coordenação e desenvolvimento - Bruno Rohde
 Pesquisa e concepção - Bruno Rohde, Cristiano Figueiró, Guilherme Soares, Rafael De Marchi
 
 Design de marca e interface - Rafael De Marchi
+
+Produção - Thayná Mallmann
+
+Comunicação - Luísa Saad
 
 
 Agradecimentos:
