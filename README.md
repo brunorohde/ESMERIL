@@ -1,7 +1,8 @@
 ESMERIL - Reprodutor musical expandido - Pure Data (Pd) / Ofelia
 
-http://esmeril.ufba.br/
+http://esmeril.ufba.br/ 
 
+&nbsp;
 
 Equipe:
 
@@ -15,6 +16,7 @@ Produção - Thayná Mallmann
 
 Comunicação - Luísa Saad
 
+&nbsp;
 
 Agradecimentos:
 
@@ -26,6 +28,7 @@ Ed Kelly - NinjaTools - http://sharktracks.co.uk/html/ninjaTools.html
 
 Comunidade Pure Data
 
+&nbsp;
 
 Copyleft 2018 Bruno Rohde - Licença GPLV3 -  http://www.gnu.org/licenses/gpl.txt
 
