@@ -1,525 +1,9 @@
-#N canvas 2 590 952 306 10;
+#N canvas 0 580 388 247 10;
 #X declare -lib ofelia -lib zexy;
 #X declare -path data -path data/abs -path data/scenes -path data/fonts
 -path data/png;
-#X obj 107 189 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 58 29 bit_cpu;
-#N canvas 131 256 357 281 PRINT_CPU 0;
-#X obj 56 44 inlet;
-#X floatatom 209 168 0 0 0 0 - - -;
-#X obj 209 111 cputime;
-#X obj 209 36 loadbang;
-#X obj 209 74 metro 1000;
-#X msg 209 55 1;
-#X obj 209 93 t b b;
-#X obj 209 149 * 0.1;
-#X obj 209 130 int;
-#X obj 56 72 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
-;
-#X msg 209 187 text \$1;
-#X obj 56 88 ofHead 200;
-#X obj 56 186 ofSetColor gray;
-#X obj 56 167 ofTranslate 10 10 0;
-#X obj 56 205 ofDrawTextAsShapes \$0-font[0] 15;
-#X connect 0 0 9 0;
-#X connect 1 0 10 0;
-#X connect 2 0 8 0;
-#X connect 3 0 5 0;
-#X connect 4 0 6 0;
-#X connect 5 0 4 0;
-#X connect 6 0 2 0;
-#X connect 6 1 2 1;
-#X connect 7 0 1 0;
-#X connect 8 0 7 0;
-#X connect 9 0 11 0;
-#X connect 10 0 14 0;
-#X connect 11 0 13 0;
-#X connect 12 0 14 0;
-#X connect 13 0 12 0;
-#X restore 107 205 pd PRINT_CPU;
-#N canvas 44 344 1165 552 WINDOW_TOUCHS 0;
-#N canvas 561 275 428 224 TAMANHOS_COMUNS 0;
-#X msg 91 99 1334 750;
-#X msg 159 99 1920 1080;
-#X obj 91 122 /;
-#X floatatom 91 144 8 0 0 0 - - -;
-#X msg 91 72 1280 720;
-#X floatatom 265 75 5 0 0 0 - - -;
-#X obj 265 97 t f f;
-#X floatatom 265 142 5 0 0 0 - - -;
-#X floatatom 303 142 5 0 0 0 - - -;
-#X msg 54 34 2560 1600;
-#X text 120 34 TABLET;
-#X text 153 73 CEL. BRASIL;
-#X obj 323 43 / 1.77778;
-#X obj 318 68 * 1.77778;
-#X obj 303 119 / 1.77778;
-#X connect 0 0 2 0;
-#X connect 1 0 2 0;
-#X connect 2 0 3 0;
-#X connect 3 0 14 1;
-#X connect 4 0 2 0;
-#X connect 5 0 6 0;
-#X connect 6 0 7 0;
-#X connect 6 1 14 0;
-#X connect 9 0 2 0;
-#X connect 14 0 8 0;
-#X restore 38 460 pd TAMANHOS_COMUNS;
-#X obj 38 321 ofWindow 800 450 LEFT TOP;
-#X obj 82 225 pack f f;
-#X msg 109 292 dimen \$1 \$2;
-#X obj 82 111 ofGetScreenDimen;
-#X obj 82 95 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 82 263 s \$0-screenDimen;
-#X obj 512 42 unpack f f;
-#X floatatom 512 61 5 0 0 0 - - -;
-#X floatatom 802 71 5 0 0 0 - - -;
-#X text 618 21 DIMENSÃO DA TELA;
-#X text 922 115 CABEÇALHO;
-#X text 922 102 TRACKS;
-#X text 632 79 LARGURA;
-#X text 922 89 LARGURA;
-#X obj 512 124 s \$0-width;
-#X obj 802 134 s \$0-height;
-#X obj 854 172 s \$0-h_tracks;
-#X obj 512 23 r \$0-screenDimen;
-#X obj 802 89 expr int($f1 * 1) \; int($f1 * 0.2) \; int($f1 * 0.2)
-\;;
-#X obj 542 468 ofTouchListener;
-#X obj 542 497 s \$0-touchDown;
-#X obj 641 497 s \$0-touchMove;
-#X obj 740 497 s \$0-touchUp;
-#X text 644 468 ENTRADA GLOBAL DE TOQUES;
-#X obj 82 76 inlet;
-#X obj 564 143 s \$0-w_button;
-#X text 632 92 LARGURA BOTÕES LATERAIS;
-#X obj 617 181 s \$0-w_main;
-#X text 632 105 LARGURA ÁREA PRINCIPAL;
-#X obj 82 130 /;
-#X obj 82 187 t f f;
-#X text 117 168 DIMENSÃO X FIXA;
-#X text 152 206 DIMENSÃO Y RELATIVA AO DISPOSITIVO;
-#X obj 109 206 / 1.6;
-#X obj 38 350 spigot 1;
-#X obj 91 350 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X msg 211 303 destroy \, create;
-#X obj 907 134 s \$0-h_head;
-#X msg 234 114 1.77778;
-#X obj 273 244 > 1.65;
-#X obj 82 149 t b f f;
-#X obj 273 263 s \$0-ratio;
-#X text 345 263 ENVIA PROPORÇÃO DA TELA PARA CORRETORES NOS OBJETOS
-(0 = TABLET / 1 = CELULAR), f 39;
-#X text 277 76 DEBUG;
-#X msg 234 133 1.6;
-#X obj 234 152 t b f f;
-#X msg 82 168 800;
-#X msg 323 303 destroy;
-#X obj 512 79 expr int($f1 * 1) \; int($f1 * 0.11) \; int($f1 * 0.75)
-\;;
-#X obj 752 331 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
-#X obj 677 369 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 677 385 sel 1 0;
-#X obj 749 404 t f f;
-#X obj 677 404 f;
-#X msg 810 423 3 400 150;
-#X msg 749 423 3 \$1 150;
-#X msg 677 423 3 \$1 150;
-#X obj 749 385 int;
-#X obj 982 331 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
-#X obj 907 385 sel 1 0;
-#X obj 979 404 t f f;
-#X obj 907 404 f;
-#X obj 979 385 int;
-#X obj 907 369 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X msg 907 423 6 \$1 150;
-#X msg 979 423 6 \$1 150;
-#X msg 1040 423 6 400 150;
-#X obj 512 331 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
-#X obj 437 369 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 437 385 sel 1 0;
-#X obj 509 404 t f f;
-#X obj 437 404 f;
-#X obj 509 385 int;
-#X msg 437 423 1 \$1 150;
-#X msg 509 423 1 \$1 150;
-#X msg 570 423 1 400 150;
-#X text 1036 363 SIMULADOR DE TOQUES NA 1 CAMADA, f 12;
-#X obj 509 347 * 599;
-#X obj 509 366 + 101;
-#X obj 749 347 * 599;
-#X obj 749 366 + 101;
-#X obj 979 347 * 599;
-#X obj 979 366 + 101;
-#X msg 437 331 1;
-#X obj 437 350 t f f f;
-#X msg 464 331 0;
-#X obj 644 210 list prepend w_main;
-#X obj 644 229 list trim;
-#X obj 644 248 s \$0-dataBus;
-#X obj 617 162 t f f;
-#X obj 854 153 t f f;
-#X obj 881 210 list prepend h_tracks;
-#X msg 38 369 renderBang;
-#X obj 38 388 s \$0-dataBus;
-#X text 122 369 ENVIA BANG NA TAXA DE RENDER PARA MECANISMO DE ÁUDIO
-, f 28;
-#X obj 234 76 inlet;
-#X obj 234 95 sel 0 1;
-#X msg 38 42 bgColor 0 0 0 \, frameRate 20;
-#X obj 82 244 t a a;
-#X obj 38 23 loadbang;
-#X connect 1 0 35 0;
-#X connect 2 0 99 0;
-#X connect 3 0 1 0;
-#X connect 4 0 30 0;
-#X connect 5 0 4 0;
-#X connect 7 0 8 0;
-#X connect 7 1 9 0;
-#X connect 8 0 49 0;
-#X connect 9 0 19 0;
-#X connect 18 0 7 0;
-#X connect 19 0 16 0;
-#X connect 19 1 91 0;
-#X connect 19 2 38 0;
-#X connect 20 0 21 0;
-#X connect 20 1 22 0;
-#X connect 20 2 23 0;
-#X connect 25 0 5 0;
-#X connect 30 0 41 0;
-#X connect 31 0 2 0;
-#X connect 31 1 34 0;
-#X connect 34 0 2 1;
-#X connect 35 0 93 0;
-#X connect 36 0 35 1;
-#X connect 37 0 1 0;
-#X connect 39 0 46 0;
-#X connect 40 0 42 0;
-#X connect 41 0 47 0;
-#X connect 41 1 34 1;
-#X connect 41 2 40 0;
-#X connect 45 0 46 0;
-#X connect 46 0 47 0;
-#X connect 46 1 34 1;
-#X connect 46 2 40 0;
-#X connect 47 0 31 0;
-#X connect 48 0 1 0;
-#X connect 49 0 15 0;
-#X connect 49 1 26 0;
-#X connect 49 2 90 0;
-#X connect 50 0 80 0;
-#X connect 51 0 52 0;
-#X connect 52 0 54 0;
-#X connect 52 1 55 0;
-#X connect 53 0 56 0;
-#X connect 53 1 54 1;
-#X connect 54 0 57 0;
-#X connect 55 0 23 0;
-#X connect 56 0 22 0;
-#X connect 57 0 21 0;
-#X connect 58 0 53 0;
-#X connect 59 0 82 0;
-#X connect 60 0 62 0;
-#X connect 60 1 67 0;
-#X connect 61 0 66 0;
-#X connect 61 1 62 1;
-#X connect 62 0 65 0;
-#X connect 63 0 61 0;
-#X connect 64 0 60 0;
-#X connect 65 0 21 0;
-#X connect 66 0 22 0;
-#X connect 67 0 23 0;
-#X connect 68 0 78 0;
-#X connect 69 0 70 0;
-#X connect 70 0 72 0;
-#X connect 70 1 76 0;
-#X connect 71 0 75 0;
-#X connect 71 1 72 1;
-#X connect 72 0 74 0;
-#X connect 73 0 71 0;
-#X connect 74 0 21 0;
-#X connect 75 0 22 0;
-#X connect 76 0 23 0;
-#X connect 78 0 79 0;
-#X connect 79 0 73 0;
-#X connect 80 0 81 0;
-#X connect 81 0 58 0;
-#X connect 82 0 83 0;
-#X connect 83 0 63 0;
-#X connect 84 0 85 0;
-#X connect 85 0 69 0;
-#X connect 85 1 51 0;
-#X connect 85 2 64 0;
-#X connect 86 0 85 0;
-#X connect 87 0 88 0;
-#X connect 88 0 89 0;
-#X connect 90 0 28 0;
-#X connect 90 1 87 0;
-#X connect 91 0 17 0;
-#X connect 91 1 92 0;
-#X connect 92 0 88 0;
-#X connect 93 0 94 0;
-#X connect 96 0 97 0;
-#X connect 97 0 45 0;
-#X connect 97 1 39 0;
-#X connect 98 0 1 0;
-#X connect 98 0 1 0;
-#X connect 99 0 6 0;
-#X connect 99 1 3 0;
-#X connect 100 0 98 0;
-#X restore 318 205 pd WINDOW_TOUCHS;
-#X obj 58 110 ofWindowLoadBang;
-#N canvas 2 53 382 280 INIT_SYSTEM 0;
-#X obj 75 71 inlet TRIGGER;
-#X obj 75 119 f 10;
-#X obj 75 138 until;
-#X obj 75 176 f;
-#X obj 98 176 + 1;
-#X msg 90 157 0;
-#X obj 75 100 t b b;
-#X obj 75 195 t f f;
-#X obj 75 224 s \$0-LB;
-#X text 53 25 ** ENVIA 10 BANGS ORDENADOS PARA SISTEMA DE INICIALIZAÇÃO
-, f 32;
-#X connect 0 0 6 0;
-#X connect 1 0 2 0;
-#X connect 2 0 3 0;
-#X connect 3 0 7 0;
-#X connect 4 0 3 1;
-#X connect 5 0 3 1;
-#X connect 6 0 1 0;
-#X connect 6 1 5 0;
-#X connect 7 0 8 0;
-#X connect 7 1 4 0;
-#X restore 209 205 pd INIT_SYSTEM;
-#X obj 209 151 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 209 29 ESMERIL \$0;
-#N canvas 675 206 763 484 RESOURCES 0;
-#X obj 366 59 r \$0-height;
-#X obj 366 78 change;
-#X obj 366 116 / 10;
-#X obj 366 135 int;
-#X text 442 222 CARREGA FONTE COM 1/10 ALTURA DA TELA;
-#X text 41 26 ** BANCO DE PNG'S;
-#X text 364 26 ** BANCO DE FONTES;
-#X obj 366 216 ofLoadFont \; \$0-font \;;
-#X obj 366 353 ofEditFont \$0-font[0];
-#X msg 366 334 letterSpacing 0.9;
-#X msg 366 154 load data/fonts/DINEngschriftStd.otf \$1 data/fonts/DINEngschriftStd.otf
-\$1 data/fonts/FuturaStd-CondensedLightObl.otf \$1;
-#X text 505 334 ALTERA ESPAÇAMENTO ENTRE CARACTERES NAS CAIXAS DE
-NÚMEROS, f 24;
-#X obj 366 248 t b b;
-#X text 532 286 ALTERA ESPAÇAMENTO ENTRE LINHAS NO VISOR DE NOME DA
-CENA, f 31;
-#X obj 393 305 ofEditFont \$0-font[1];
-#X obj 366 97 t f f;
-#X obj 405 135 int;
-#X obj 405 116 / 7;
-#X msg 393 286 lineHeight \$1;
-#X obj 393 267 f;
-#X obj 43 284 ofLoadImage \; \$0-pngBank \;;
-#X obj 43 120 ofLoadImage \; \$0-pngBankIntro \;;
-#N canvas 939 63 414 822 PNG_LIST 0;
-#X text 40 49 0;
-#X text 40 62 1;
-#X text 40 75 2;
-#X text 40 88 3;
-#X text 40 101 4;
-#X text 40 114 5;
-#X text 40 127 6;
-#X text 40 140 7;
-#X text 40 153 8;
-#X text 40 166 9;
-#X text 34 179 10;
-#X text 34 192 11;
-#X text 34 205 12;
-#X text 34 218 13;
-#X text 34 231 14;
-#X text 34 243 15;
-#X text 34 257 16;
-#X text 34 270 17;
-#X text 34 283 18;
-#X text 34 296 19;
-#X text 34 309 20;
-#X text 34 322 21;
-#X text 34 335 22;
-#X text 34 348 23;
-#X text 34 361 24;
-#X text 34 374 25;
-#X text 34 387 26;
-#X text 34 400 27;
-#X text 34 413 28;
-#X text 34 426 29;
-#X text 34 439 30;
-#X text 34 452 31;
-#X text 34 464 32;
-#X text 34 478 33;
-#X text 34 491 34;
-#X text 34 504 35;
-#X text 34 517 36;
-#X text 34 530 37;
-#X text 34 543 38;
-#X text 34 556 39;
-#X text 34 569 40;
-#X text 34 582 41;
-#X text 34 595 42;
-#X text 34 608 43;
-#X text 34 621 44;
-#X text 34 633 45;
-#X text 34 647 46;
-#X text 34 660 47;
-#X text 34 673 48;
-#X text 34 686 49;
-#X text 34 699 50;
-#X text 34 712 51;
-#X text 34 724 52;
-#X text 34 738 53;
-#X text 34 751 54;
-#X text 34 764 55;
-#X text 34 778 56;
-#X text 34 791 57;
-#X text 34 803 58;
-#X text 34 816 59;
-#X text 34 829 60;
-#X text 34 842 61;
-#X text 34 855 62;
-#X text 34 868 63;
-#X text 34 880 64;
-#X text 34 894 65;
-#X text 34 907 66;
-#X text 34 920 67;
-#X text 34 933 68;
-#X text 34 946 69;
-#X text 34 959 70;
-#X text 34 971 71;
-#X text 34 985 72;
-#X text 34 998 73;
-#X text 34 1011 74;
-#X text 34 1024 75;
-#X text 34 1037 76;
-#X text 34 1049 77;
-#X text 34 1063 78;
-#X text 34 1076 79;
-#X text 34 1089 80;
-#X obj 60 20 inlet BANG;
-#X obj 60 1157 outlet LOAD;
-#X text 34 1102 81;
-#X msg 60 49 load data/png/bg_app.png data/png/btn_multigranular_off.png
-data/png/btn_beatslicer_on.png data/png/btn_multigranular_on.png data/png/btn_functions_random_off.png
-data/png/btn_functions_random_on.png data/png/btn_functions_pattern_off.png
-data/png/btn_functions_pattern_on.png data/png/btn_functions_freeze_off.png
-data/png/btn_functions_freeze_on.png data/png/btn_functions_reverse_off.png
-data/png/btn_functions_reverse_on.png data/png/btn_functions_reverseSlice_off.png
-data/png/btn_functions_reverseSlice_on.png data/png/btn_functions_pin_off.png
-data/png/btn_functions_pin_on.png data/png/btn_nav_waveform_off.png
-data/png/btn_nav_waveform_on.png data/png/btn_nav_slicer_off.png data/png/btn_nav_slicer_on.png
-data/png/btn_nav_audio_off.png data/png/btn_nav_audio_on.png data/png/btn_nav_functions_off.png
-data/png/btn_nav_functions_on.png data/png/btn_select_audio_off.png
-data/png/btn_select_audio_on.png data/png/help_slices.png data/png/help_range.png
-data/png/help_offset.png data/png/btn_numbers_setaesq_off.png data/png/btn_numbers_setaesq_on.png
-data/png/btn_numbers_setaesq_on2_vermelha.png data/png/btn_slices_number_off.png
-data/png/btn_slices_number_on_vermelho.png data/png/btn_numbers_setadir_off.png
-data/png/btn_numbers_setadir_on.png data/png/btn_numbers_setadir_on2_vermelha.png
-data/png/btn_numbers_setaesq_off.png data/png/btn_numbers_setaesq_on.png
-data/png/btn_numbers_setaesq_on2_roxa.png data/png/btn_slices_number_off.png
-data/png/btn_slices_number_on_roxo.png data/png/btn_numbers_setadir_off.png
-data/png/btn_numbers_setadir_on.png data/png/btn_numbers_setadir_on2_roxa.png
-data/png/btn_numbers_setaesq_off.png data/png/btn_numbers_setaesq_on.png
-data/png/btn_numbers_setaesq_on2_laranja.png data/png/btn_slices_number_off.png
-data/png/btn_slices_number_on_laranja.png data/png/btn_numbers_setadir_off.png
-data/png/btn_numbers_setadir_on.png data/png/btn_numbers_setadir_on2_laranja.png
-data/png/btn_top_menu_off.png data/png/btn_top_menu_on.png data/png/btn_top_loop.png
-data/png/btn_top_play.png data/png/btn_numbers_setaesq_off.png data/png/btn_numbers_setaesq_on.png
-data/png/btn_numbers_setaesq_on2_laranja.png data/png/btn_top_cena_off.png
-data/png/btn_top_cena_on.png data/png/btn_numbers_setadir_off.png data/png/btn_numbers_setadir_on.png
-data/png/btn_numbers_setadir_on2_laranja.png data/png/btn_numbers_setaesq_off.png
-data/png/btn_numbers_setaesq_on.png data/png/btn_numbers_setaesq_on2_roxa.png
-data/png/btn_top_bpm_off.png data/png/btn_top_cena_on.png data/png/btn_numbers_setadir_off.png
-data/png/btn_numbers_setadir_on.png data/png/btn_numbers_setadir_on2_roxa.png
-data/png/btn_top_gridcenas_off.png data/png/btn_top_gridcenas_on.png
-data/png/btn_top_rec_off.png data/png/btn_top_rec_on_inter.png data/png/btn_top_rec_on.png
-data/png/btn_top_link_off.png data/png/btn_top_link_on_inter.png data/png/btn_top_link_on.png
-data/png/btn_top_separator.png data/png/btn_top_info_off.png data/png/btn_top_info_on.png
-, f 45;
-#X text 34 1115 82;
-#X text 34 1128 83;
-#X connect 81 0 84 0;
-#X connect 84 0 82 0;
-#X restore 43 265 pd PNG_LIST;
-#X text 152 126 PRIMEIRO CARREGA IMAGENS DA ABERTURA, f 19;
-#X obj 43 213 ofLoadImage \; \$0-pngBankMenu \;;
-#X obj 43 356 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text 66 355 IMAGENS CARREGADAS!;
-#X obj 43 392 outlet DONE;
-#X text 122 265 PNG'S DA PARTE PRINCIPAL;
-#X text 145 219 IMAGENS DO MENU DE CENAS;
-#X obj 204 392 s \$0-appStage;
-#X text 202 416 ENVIA CONTROLE DO ESTADO DO APP, f 17;
-#X msg 204 373 0;
-#X msg 234 373 1;
-#X msg 264 373 2;
-#X obj 43 152 t b b b;
-#X msg 43 181 load data/png/bg_limpo.png data/png/bg_creditos.png,
-f 28;
-#X obj 43 59 loadbang;
-#X obj 43 316 t b b b;
-#X obj 264 332 del 3000;
-#X msg 43 88 load data/png/bg_entrada_1200px.png, f 30;
-#X connect 0 0 1 0;
-#X connect 1 0 15 0;
-#X connect 2 0 3 0;
-#X connect 3 0 10 0;
-#X connect 7 0 12 0;
-#X connect 9 0 8 0;
-#X connect 10 0 7 0;
-#X connect 12 0 9 0;
-#X connect 12 1 19 0;
-#X connect 15 0 2 0;
-#X connect 15 1 17 0;
-#X connect 16 0 19 1;
-#X connect 17 0 16 0;
-#X connect 18 0 14 0;
-#X connect 19 0 18 0;
-#X connect 20 0 38 0;
-#X connect 21 0 35 0;
-#X connect 22 0 20 0;
-#X connect 24 0 22 0;
-#X connect 25 0 27 0;
-#X connect 32 0 30 0;
-#X connect 33 0 30 0;
-#X connect 34 0 30 0;
-#X connect 35 0 36 0;
-#X connect 35 1 32 0;
-#X connect 36 0 24 0;
-#X connect 37 0 40 0;
-#X connect 38 0 25 0;
-#X connect 38 1 33 0;
-#X connect 38 2 39 0;
-#X connect 39 0 34 0;
-#X connect 40 0 21 0;
-#X restore 304 29 pd RESOURCES;
-#X obj 209 167 t b b;
-#X text 569 169 - VERSÃO COMPUTADOR RODANDO ÁUDIO EM [pd~];
-#X obj 570 29 declare -lib ofelia -lib zexy;
-#X obj 411 189 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X text 569 199 - COMPILAR APP JÁ COM CENA PADRÃO - VERSÃO DEBUG/BETA
-;
-#X obj 570 48 declare -path data -path data/abs -path data/scenes -path
-data/fonts -path data/png, f 43;
-#X text 569 149 - RESET BPM E MOMENTO COM 2 TOQUES;
+#X obj 258 59 bit_cpu;
+#X obj 49 59 ESMERIL \$0;
 #N canvas 188 431 463 308 MAIN 0;
 #X obj 128 195 gui_track \$0 0;
 #X obj 128 214 gui_track \$0 1;
@@ -2106,7 +1590,7 @@ DA CENA;
 #X connect 22 5 3 0;
 #X connect 23 0 25 0;
 #X connect 25 0 22 0;
-#X restore 444 114 pd MAIN;
+#X restore 49 175 pd MAIN;
 #N canvas 612 110 438 312 INTRO 0;
 #X obj 50 40 inlet RENDER;
 #X obj 140 119 unpack f f;
@@ -2145,17 +1629,7 @@ DA CENA;
 #X connect 14 0 12 2;
 #X connect 15 0 14 1;
 #X connect 16 0 14 1;
-#X restore 304 114 pd INTRO;
-#X obj 304 48 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text 328 47 DONE;
-#X obj 304 98 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 444 98 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X text 569 109 - MENU DE CENAS \, POPUP CRÉDITOS;
-#X obj 377 98 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X restore 49 137 pd INTRO;
 #N canvas 612 110 474 207 MENU 0;
 #X obj 50 40 inlet RENDER;
 #X obj 135 119 unpack f f;
@@ -2173,7 +1647,7 @@ DA CENA;
 #X connect 3 0 8 0;
 #X connect 7 0 5 0;
 #X connect 8 0 7 0;
-#X restore 377 114 pd MENU;
+#X restore 49 156 pd MENU;
 #N canvas 2 53 648 423 CREDITS 0;
 #X text 45 33 ESMERIL v.0.1;
 #X text 45 363 Copyleft 2018 Bruno Rohde - Licença GPLV3 - https://www.gnu.org/licenses/gpl.txt
@@ -2192,32 +1666,545 @@ DA CENA;
 #X text 45 273 Comunidade Pure Data;
 #X text 45 303 Site - esmeril.ufba.br;
 #X text 45 323 Repositório - github.com/brunorohde/ESMERIL;
-#X restore 411 29 pd CREDITS;
-#X text 191 251 PATCH OU ANDROID;
-#X obj 58 251 s \$0-ESMERIL_VERSION;
-#X obj 58 225 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X restore 258 120 pd CREDITS;
+#N canvas 149 101 488 276 INIT 0;
+#X obj 116 153 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 58 129 t b b b;
-#X msg 58 206 0;
-#X msg 107 170 0;
-#X text 569 129 - EDITOR SIMPLES DA SEQUÊNCIA MASTER NO PATCH;
-#X obj 318 186 del 10;
-#X obj 209 186 del 20;
+#N canvas 131 256 357 281 PRINT_CPU 0;
+#X obj 56 44 inlet;
+#X floatatom 209 168 0 0 0 0 - - -;
+#X obj 209 111 cputime;
+#X obj 209 36 loadbang;
+#X obj 209 74 metro 1000;
+#X msg 209 55 1;
+#X obj 209 93 t b b;
+#X obj 209 149 * 0.1;
+#X obj 209 130 int;
+#X obj 56 72 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 209 187 text \$1;
+#X obj 56 88 ofHead 200;
+#X obj 56 186 ofSetColor gray;
+#X obj 56 167 ofTranslate 10 10 0;
+#X obj 56 205 ofDrawTextAsShapes \$0-font[0] 15;
+#X connect 0 0 9 0;
+#X connect 1 0 10 0;
+#X connect 2 0 8 0;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X connect 6 0 2 0;
+#X connect 6 1 2 1;
+#X connect 7 0 1 0;
+#X connect 8 0 7 0;
+#X connect 9 0 11 0;
+#X connect 10 0 14 0;
+#X connect 11 0 13 0;
+#X connect 12 0 14 0;
+#X connect 13 0 12 0;
+#X restore 116 169 pd PRINT_CPU;
+#N canvas 44 344 1165 552 WINDOW_TOUCHS 0;
+#N canvas 561 275 428 224 TAMANHOS_COMUNS 0;
+#X msg 91 99 1334 750;
+#X msg 159 99 1920 1080;
+#X obj 91 122 /;
+#X floatatom 91 144 8 0 0 0 - - -;
+#X msg 91 72 1280 720;
+#X floatatom 265 75 5 0 0 0 - - -;
+#X obj 265 97 t f f;
+#X floatatom 265 142 5 0 0 0 - - -;
+#X floatatom 303 142 5 0 0 0 - - -;
+#X msg 54 34 2560 1600;
+#X text 120 34 TABLET;
+#X text 153 73 CEL. BRASIL;
+#X obj 323 43 / 1.77778;
+#X obj 318 68 * 1.77778;
+#X obj 303 119 / 1.77778;
 #X connect 0 0 2 0;
-#X connect 4 0 29 0;
-#X connect 6 0 9 0;
-#X connect 8 0 18 0;
-#X connect 9 0 34 0;
-#X connect 9 1 33 0;
-#X connect 12 0 3 1;
-#X connect 20 0 17 0;
-#X connect 21 0 16 0;
-#X connect 23 0 24 0;
-#X connect 28 0 27 0;
-#X connect 29 0 30 0;
-#X connect 29 1 31 0;
-#X connect 29 2 9 0;
-#X connect 30 0 28 0;
-#X connect 31 0 0 0;
-#X connect 33 0 3 0;
-#X connect 34 0 5 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 14 1;
+#X connect 4 0 2 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 6 1 14 0;
+#X connect 9 0 2 0;
+#X connect 14 0 8 0;
+#X restore 38 460 pd TAMANHOS_COMUNS;
+#X obj 38 321 ofWindow 800 450 LEFT TOP;
+#X obj 82 225 pack f f;
+#X msg 109 292 dimen \$1 \$2;
+#X obj 82 111 ofGetScreenDimen;
+#X obj 82 95 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 82 263 s \$0-screenDimen;
+#X obj 512 42 unpack f f;
+#X floatatom 512 61 5 0 0 0 - - -;
+#X floatatom 802 71 5 0 0 0 - - -;
+#X text 618 21 DIMENSÃO DA TELA;
+#X text 922 115 CABEÇALHO;
+#X text 922 102 TRACKS;
+#X text 632 79 LARGURA;
+#X text 922 89 LARGURA;
+#X obj 512 124 s \$0-width;
+#X obj 802 134 s \$0-height;
+#X obj 854 172 s \$0-h_tracks;
+#X obj 512 23 r \$0-screenDimen;
+#X obj 802 89 expr int($f1 * 1) \; int($f1 * 0.2) \; int($f1 * 0.2)
+\;;
+#X obj 542 468 ofTouchListener;
+#X obj 542 497 s \$0-touchDown;
+#X obj 641 497 s \$0-touchMove;
+#X obj 740 497 s \$0-touchUp;
+#X text 644 468 ENTRADA GLOBAL DE TOQUES;
+#X obj 82 76 inlet;
+#X obj 564 143 s \$0-w_button;
+#X text 632 92 LARGURA BOTÕES LATERAIS;
+#X obj 617 181 s \$0-w_main;
+#X text 632 105 LARGURA ÁREA PRINCIPAL;
+#X obj 82 130 /;
+#X obj 82 187 t f f;
+#X text 117 168 DIMENSÃO X FIXA;
+#X text 152 206 DIMENSÃO Y RELATIVA AO DISPOSITIVO;
+#X obj 109 206 / 1.6;
+#X obj 38 350 spigot 1;
+#X obj 91 350 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 211 303 destroy \, create;
+#X obj 907 134 s \$0-h_head;
+#X msg 234 114 1.77778;
+#X obj 273 244 > 1.65;
+#X obj 82 149 t b f f;
+#X obj 273 263 s \$0-ratio;
+#X text 345 263 ENVIA PROPORÇÃO DA TELA PARA CORRETORES NOS OBJETOS
+(0 = TABLET / 1 = CELULAR), f 39;
+#X text 277 76 DEBUG;
+#X msg 234 133 1.6;
+#X obj 234 152 t b f f;
+#X msg 82 168 800;
+#X msg 323 303 destroy;
+#X obj 512 79 expr int($f1 * 1) \; int($f1 * 0.11) \; int($f1 * 0.75)
+\;;
+#X obj 752 331 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 677 369 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 677 385 sel 1 0;
+#X obj 749 404 t f f;
+#X obj 677 404 f;
+#X msg 810 423 3 400 150;
+#X msg 749 423 3 \$1 150;
+#X msg 677 423 3 \$1 150;
+#X obj 749 385 int;
+#X obj 982 331 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 907 385 sel 1 0;
+#X obj 979 404 t f f;
+#X obj 907 404 f;
+#X obj 979 385 int;
+#X obj 907 369 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 907 423 6 \$1 150;
+#X msg 979 423 6 \$1 150;
+#X msg 1040 423 6 400 150;
+#X obj 512 331 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 437 369 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 437 385 sel 1 0;
+#X obj 509 404 t f f;
+#X obj 437 404 f;
+#X obj 509 385 int;
+#X msg 437 423 1 \$1 150;
+#X msg 509 423 1 \$1 150;
+#X msg 570 423 1 400 150;
+#X text 1036 363 SIMULADOR DE TOQUES NA 1 CAMADA, f 12;
+#X obj 509 347 * 599;
+#X obj 509 366 + 101;
+#X obj 749 347 * 599;
+#X obj 749 366 + 101;
+#X obj 979 347 * 599;
+#X obj 979 366 + 101;
+#X msg 437 331 1;
+#X obj 437 350 t f f f;
+#X msg 464 331 0;
+#X obj 644 210 list prepend w_main;
+#X obj 644 229 list trim;
+#X obj 644 248 s \$0-dataBus;
+#X obj 617 162 t f f;
+#X obj 854 153 t f f;
+#X obj 881 210 list prepend h_tracks;
+#X msg 38 369 renderBang;
+#X obj 38 388 s \$0-dataBus;
+#X text 122 369 ENVIA BANG NA TAXA DE RENDER PARA MECANISMO DE ÁUDIO
+, f 28;
+#X obj 234 76 inlet;
+#X obj 234 95 sel 0 1;
+#X msg 38 42 bgColor 0 0 0 \, frameRate 20;
+#X obj 82 244 t a a;
+#X obj 38 23 loadbang;
+#X connect 1 0 35 0;
+#X connect 2 0 99 0;
+#X connect 3 0 1 0;
+#X connect 4 0 30 0;
+#X connect 5 0 4 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 8 0 49 0;
+#X connect 9 0 19 0;
+#X connect 18 0 7 0;
+#X connect 19 0 16 0;
+#X connect 19 1 91 0;
+#X connect 19 2 38 0;
+#X connect 20 0 21 0;
+#X connect 20 1 22 0;
+#X connect 20 2 23 0;
+#X connect 25 0 5 0;
+#X connect 30 0 41 0;
+#X connect 31 0 2 0;
+#X connect 31 1 34 0;
+#X connect 34 0 2 1;
+#X connect 35 0 93 0;
+#X connect 36 0 35 1;
+#X connect 37 0 1 0;
+#X connect 39 0 46 0;
+#X connect 40 0 42 0;
+#X connect 41 0 47 0;
+#X connect 41 1 34 1;
+#X connect 41 2 40 0;
+#X connect 45 0 46 0;
+#X connect 46 0 47 0;
+#X connect 46 1 34 1;
+#X connect 46 2 40 0;
+#X connect 47 0 31 0;
+#X connect 48 0 1 0;
+#X connect 49 0 15 0;
+#X connect 49 1 26 0;
+#X connect 49 2 90 0;
+#X connect 50 0 80 0;
+#X connect 51 0 52 0;
+#X connect 52 0 54 0;
+#X connect 52 1 55 0;
+#X connect 53 0 56 0;
+#X connect 53 1 54 1;
+#X connect 54 0 57 0;
+#X connect 55 0 23 0;
+#X connect 56 0 22 0;
+#X connect 57 0 21 0;
+#X connect 58 0 53 0;
+#X connect 59 0 82 0;
+#X connect 60 0 62 0;
+#X connect 60 1 67 0;
+#X connect 61 0 66 0;
+#X connect 61 1 62 1;
+#X connect 62 0 65 0;
+#X connect 63 0 61 0;
+#X connect 64 0 60 0;
+#X connect 65 0 21 0;
+#X connect 66 0 22 0;
+#X connect 67 0 23 0;
+#X connect 68 0 78 0;
+#X connect 69 0 70 0;
+#X connect 70 0 72 0;
+#X connect 70 1 76 0;
+#X connect 71 0 75 0;
+#X connect 71 1 72 1;
+#X connect 72 0 74 0;
+#X connect 73 0 71 0;
+#X connect 74 0 21 0;
+#X connect 75 0 22 0;
+#X connect 76 0 23 0;
+#X connect 78 0 79 0;
+#X connect 79 0 73 0;
+#X connect 80 0 81 0;
+#X connect 81 0 58 0;
+#X connect 82 0 83 0;
+#X connect 83 0 63 0;
+#X connect 84 0 85 0;
+#X connect 85 0 69 0;
+#X connect 85 1 51 0;
+#X connect 85 2 64 0;
+#X connect 86 0 85 0;
+#X connect 87 0 88 0;
+#X connect 88 0 89 0;
+#X connect 90 0 28 0;
+#X connect 90 1 87 0;
+#X connect 91 0 17 0;
+#X connect 91 1 92 0;
+#X connect 92 0 88 0;
+#X connect 93 0 94 0;
+#X connect 96 0 97 0;
+#X connect 97 0 45 0;
+#X connect 97 1 39 0;
+#X connect 98 0 1 0;
+#X connect 98 0 1 0;
+#X connect 99 0 6 0;
+#X connect 99 1 3 0;
+#X connect 100 0 98 0;
+#X restore 322 171 pd WINDOW_TOUCHS;
+#X obj 47 98 ofWindowLoadBang;
+#N canvas 2 53 382 280 INIT_SYSTEM 0;
+#X obj 75 71 inlet TRIGGER;
+#X obj 75 119 f 10;
+#X obj 75 138 until;
+#X obj 75 176 f;
+#X obj 98 176 + 1;
+#X msg 90 157 0;
+#X obj 75 100 t b b;
+#X obj 75 195 t f f;
+#X obj 75 224 s \$0-LB;
+#X text 53 25 ** ENVIA 10 BANGS ORDENADOS PARA SISTEMA DE INICIALIZAÇÃO
+, f 32;
+#X connect 0 0 6 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 7 0;
+#X connect 4 0 3 1;
+#X connect 5 0 3 1;
+#X connect 6 0 1 0;
+#X connect 6 1 5 0;
+#X connect 7 0 8 0;
+#X connect 7 1 4 0;
+#X restore 213 171 pd INIT_SYSTEM;
+#X obj 213 117 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 213 133 t b b;
+#X obj 415 155 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 180 208 PATCH OU ANDROID;
+#X obj 47 208 s \$0-ESMERIL_VERSION;
+#X obj 47 182 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 47 117 t b b b;
+#X msg 47 163 0;
+#X msg 116 134 0;
+#X obj 322 152 del 10;
+#X obj 213 152 del 20;
+#N canvas 675 206 763 484 RESOURCES 0;
+#X obj 366 59 r \$0-height;
+#X obj 366 78 change;
+#X obj 366 116 / 10;
+#X obj 366 135 int;
+#X text 442 222 CARREGA FONTE COM 1/10 ALTURA DA TELA;
+#X text 41 26 ** BANCO DE PNG'S;
+#X text 364 26 ** BANCO DE FONTES;
+#X obj 366 216 ofLoadFont \; \$0-font \;;
+#X obj 366 353 ofEditFont \$0-font[0];
+#X msg 366 334 letterSpacing 0.9;
+#X msg 366 154 load data/fonts/DINEngschriftStd.otf \$1 data/fonts/DINEngschriftStd.otf
+\$1 data/fonts/FuturaStd-CondensedLightObl.otf \$1;
+#X text 505 334 ALTERA ESPAÇAMENTO ENTRE CARACTERES NAS CAIXAS DE
+NÚMEROS, f 24;
+#X obj 366 248 t b b;
+#X text 532 286 ALTERA ESPAÇAMENTO ENTRE LINHAS NO VISOR DE NOME DA
+CENA, f 31;
+#X obj 393 305 ofEditFont \$0-font[1];
+#X obj 366 97 t f f;
+#X obj 405 135 int;
+#X obj 405 116 / 7;
+#X msg 393 286 lineHeight \$1;
+#X obj 393 267 f;
+#X obj 43 284 ofLoadImage \; \$0-pngBank \;;
+#X obj 43 120 ofLoadImage \; \$0-pngBankIntro \;;
+#N canvas 939 63 414 822 PNG_LIST 0;
+#X text 40 49 0;
+#X text 40 62 1;
+#X text 40 75 2;
+#X text 40 88 3;
+#X text 40 101 4;
+#X text 40 114 5;
+#X text 40 127 6;
+#X text 40 140 7;
+#X text 40 153 8;
+#X text 40 166 9;
+#X text 34 179 10;
+#X text 34 192 11;
+#X text 34 205 12;
+#X text 34 218 13;
+#X text 34 231 14;
+#X text 34 243 15;
+#X text 34 257 16;
+#X text 34 270 17;
+#X text 34 283 18;
+#X text 34 296 19;
+#X text 34 309 20;
+#X text 34 322 21;
+#X text 34 335 22;
+#X text 34 348 23;
+#X text 34 361 24;
+#X text 34 374 25;
+#X text 34 387 26;
+#X text 34 400 27;
+#X text 34 413 28;
+#X text 34 426 29;
+#X text 34 439 30;
+#X text 34 452 31;
+#X text 34 464 32;
+#X text 34 478 33;
+#X text 34 491 34;
+#X text 34 504 35;
+#X text 34 517 36;
+#X text 34 530 37;
+#X text 34 543 38;
+#X text 34 556 39;
+#X text 34 569 40;
+#X text 34 582 41;
+#X text 34 595 42;
+#X text 34 608 43;
+#X text 34 621 44;
+#X text 34 633 45;
+#X text 34 647 46;
+#X text 34 660 47;
+#X text 34 673 48;
+#X text 34 686 49;
+#X text 34 699 50;
+#X text 34 712 51;
+#X text 34 724 52;
+#X text 34 738 53;
+#X text 34 751 54;
+#X text 34 764 55;
+#X text 34 778 56;
+#X text 34 791 57;
+#X text 34 803 58;
+#X text 34 816 59;
+#X text 34 829 60;
+#X text 34 842 61;
+#X text 34 855 62;
+#X text 34 868 63;
+#X text 34 880 64;
+#X text 34 894 65;
+#X text 34 907 66;
+#X text 34 920 67;
+#X text 34 933 68;
+#X text 34 946 69;
+#X text 34 959 70;
+#X text 34 971 71;
+#X text 34 985 72;
+#X text 34 998 73;
+#X text 34 1011 74;
+#X text 34 1024 75;
+#X text 34 1037 76;
+#X text 34 1049 77;
+#X text 34 1063 78;
+#X text 34 1076 79;
+#X text 34 1089 80;
+#X obj 60 20 inlet BANG;
+#X obj 60 1157 outlet LOAD;
+#X text 34 1102 81;
+#X msg 60 49 load data/png/bg_app.png data/png/btn_multigranular_off.png
+data/png/btn_beatslicer_on.png data/png/btn_multigranular_on.png data/png/btn_functions_random_off.png
+data/png/btn_functions_random_on.png data/png/btn_functions_pattern_off.png
+data/png/btn_functions_pattern_on.png data/png/btn_functions_freeze_off.png
+data/png/btn_functions_freeze_on.png data/png/btn_functions_reverse_off.png
+data/png/btn_functions_reverse_on.png data/png/btn_functions_reverseSlice_off.png
+data/png/btn_functions_reverseSlice_on.png data/png/btn_functions_pin_off.png
+data/png/btn_functions_pin_on.png data/png/btn_nav_waveform_off.png
+data/png/btn_nav_waveform_on.png data/png/btn_nav_slicer_off.png data/png/btn_nav_slicer_on.png
+data/png/btn_nav_audio_off.png data/png/btn_nav_audio_on.png data/png/btn_nav_functions_off.png
+data/png/btn_nav_functions_on.png data/png/btn_select_audio_off.png
+data/png/btn_select_audio_on.png data/png/help_slices.png data/png/help_range.png
+data/png/help_offset.png data/png/btn_numbers_setaesq_off.png data/png/btn_numbers_setaesq_on.png
+data/png/btn_numbers_setaesq_on2_vermelha.png data/png/btn_slices_number_off.png
+data/png/btn_slices_number_on_vermelho.png data/png/btn_numbers_setadir_off.png
+data/png/btn_numbers_setadir_on.png data/png/btn_numbers_setadir_on2_vermelha.png
+data/png/btn_numbers_setaesq_off.png data/png/btn_numbers_setaesq_on.png
+data/png/btn_numbers_setaesq_on2_roxa.png data/png/btn_slices_number_off.png
+data/png/btn_slices_number_on_roxo.png data/png/btn_numbers_setadir_off.png
+data/png/btn_numbers_setadir_on.png data/png/btn_numbers_setadir_on2_roxa.png
+data/png/btn_numbers_setaesq_off.png data/png/btn_numbers_setaesq_on.png
+data/png/btn_numbers_setaesq_on2_laranja.png data/png/btn_slices_number_off.png
+data/png/btn_slices_number_on_laranja.png data/png/btn_numbers_setadir_off.png
+data/png/btn_numbers_setadir_on.png data/png/btn_numbers_setadir_on2_laranja.png
+data/png/btn_top_menu_off.png data/png/btn_top_menu_on.png data/png/btn_top_loop.png
+data/png/btn_top_play.png data/png/btn_numbers_setaesq_off.png data/png/btn_numbers_setaesq_on.png
+data/png/btn_numbers_setaesq_on2_laranja.png data/png/btn_top_cena_off.png
+data/png/btn_top_cena_on.png data/png/btn_numbers_setadir_off.png data/png/btn_numbers_setadir_on.png
+data/png/btn_numbers_setadir_on2_laranja.png data/png/btn_numbers_setaesq_off.png
+data/png/btn_numbers_setaesq_on.png data/png/btn_numbers_setaesq_on2_roxa.png
+data/png/btn_top_bpm_off.png data/png/btn_top_cena_on.png data/png/btn_numbers_setadir_off.png
+data/png/btn_numbers_setadir_on.png data/png/btn_numbers_setadir_on2_roxa.png
+data/png/btn_top_gridcenas_off.png data/png/btn_top_gridcenas_on.png
+data/png/btn_top_rec_off.png data/png/btn_top_rec_on_inter.png data/png/btn_top_rec_on.png
+data/png/btn_top_link_off.png data/png/btn_top_link_on_inter.png data/png/btn_top_link_on.png
+data/png/btn_top_separator.png data/png/btn_top_info_off.png data/png/btn_top_info_on.png
+, f 45;
+#X text 34 1115 82;
+#X text 34 1128 83;
+#X connect 81 0 84 0;
+#X connect 84 0 82 0;
+#X restore 43 265 pd PNG_LIST;
+#X text 152 126 PRIMEIRO CARREGA IMAGENS DA ABERTURA, f 19;
+#X obj 43 213 ofLoadImage \; \$0-pngBankMenu \;;
+#X obj 43 356 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 66 355 IMAGENS CARREGADAS!;
+#X obj 43 392 outlet DONE;
+#X text 122 265 PNG'S DA PARTE PRINCIPAL;
+#X text 145 219 IMAGENS DO MENU DE CENAS;
+#X obj 204 392 s \$0-appStage;
+#X text 202 416 ENVIA CONTROLE DO ESTADO DO APP, f 17;
+#X msg 204 373 0;
+#X msg 234 373 1;
+#X msg 264 373 2;
+#X obj 43 152 t b b b;
+#X msg 43 181 load data/png/bg_limpo.png data/png/bg_creditos.png,
+f 28;
+#X obj 43 59 loadbang;
+#X obj 43 316 t b b b;
+#X obj 264 332 del 3000;
+#X msg 43 88 load data/png/bg_entrada_1200px.png, f 30;
+#X connect 0 0 1 0;
+#X connect 1 0 15 0;
+#X connect 2 0 3 0;
+#X connect 3 0 10 0;
+#X connect 7 0 12 0;
+#X connect 9 0 8 0;
+#X connect 10 0 7 0;
+#X connect 12 0 9 0;
+#X connect 12 1 19 0;
+#X connect 15 0 2 0;
+#X connect 15 1 17 0;
+#X connect 16 0 19 1;
+#X connect 17 0 16 0;
+#X connect 18 0 14 0;
+#X connect 19 0 18 0;
+#X connect 20 0 38 0;
+#X connect 21 0 35 0;
+#X connect 22 0 20 0;
+#X connect 24 0 22 0;
+#X connect 25 0 27 0;
+#X connect 32 0 30 0;
+#X connect 33 0 30 0;
+#X connect 34 0 30 0;
+#X connect 35 0 36 0;
+#X connect 35 1 32 0;
+#X connect 36 0 24 0;
+#X connect 37 0 40 0;
+#X connect 38 0 25 0;
+#X connect 38 1 33 0;
+#X connect 38 2 39 0;
+#X connect 39 0 34 0;
+#X connect 40 0 21 0;
+#X restore 142 40 pd RESOURCES;
+#N canvas 149 194 361 137 DECLARE 0;
+#X obj 41 30 declare -lib ofelia -lib zexy;
+#X obj 41 49 declare -path data -path data/abs -path data/scenes -path
+data/fonts -path data/png, f 43;
+#X restore 47 40 pd DECLARE;
+#X connect 0 0 1 0;
+#X connect 3 0 11 0;
+#X connect 5 0 6 0;
+#X connect 6 0 15 0;
+#X connect 6 1 14 0;
+#X connect 7 0 2 1;
+#X connect 10 0 9 0;
+#X connect 11 0 12 0;
+#X connect 11 1 13 0;
+#X connect 11 2 6 0;
+#X connect 12 0 10 0;
+#X connect 13 0 0 0;
+#X connect 14 0 2 0;
+#X connect 15 0 4 0;
+#X restore 49 108 pd INIT;
+#X text 124 15 -- ESMERIL v.0.1 --;
+#X text 121 59 EDIÇÃO DE CENAS;
