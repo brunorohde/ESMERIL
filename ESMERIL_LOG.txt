@@ -488,6 +488,70 @@ W/ofGraphics: ofPushStyle(): maximum number of style pushes << 32 reached, did y
 - Gravado vídeo de apresentação/teste do ESMERIL
 
 
+-- ESME --
+
+
+06/11/2018
+
+- [gui_button] - Incluída uma saída para posição do toque (atualizadas conexões de todos os botões da interface), que vai ser usada no menu de cenas
+- Início do desenvolvimento do menu interativo - planejamento visual no papel e começo da implementação
+- [gui_menu_page] - Abstração para as 3 páginas necessárias para criar o menu dinâmico 
+
+07/11/2018
+
+- Desenvolvimento do mecanismo que gera o grid para páginas do menu
+- Início do desenvolvimento do sistema que carrega imagens das capas e desenha menu
+
+08/11/2018
+
+- Design do menu no papel - deslocamento horizontal de páginas, subpágina para carregar e tocar cena, cabeçalhos do menu
+- Alterado fundo do menu para o mesmo da parte principal, com cabeçalho
+- Implementação slide horizontal das páginas
+- Desenho da logo / botão de créditos no cabeçalho
+
+09/11/2018
+
+- [gui_menu_scene] - Abstração para as 3 páginas necessárias para criar o menu dinâmico focado numa cena
+- Melhora no mecanismo de slide das páginas
+- Implementação e teste do mecanismo de desenho das capas nas páginas - funcionando para menu grid e cema
+- Implementação do menu com foco na cena
+
+10/11/2018
+
+- Alterados nomes do meta e memo para meta.txt e memo.txt
+- Encontro com Glerm pra trocar ideias sobre o app
+
+12/11/2018
+
+- Desligada interação nos diferentes estágios do app quando não estão ativos - deu trabalho
+
+15/11/2018
+
+- Início do desenvolvimento do sistema de download e comparação dos arquivos global e local para desenho do menu
+
+18/11/2018
+
+- Continua desenvolvimento do sistema global e local de gestão das cenas para desenho no menu
+
+19/11/2018
+
+- Desenvolvimento do sistema global e local de gestão das cenas para desenho no menu
+- Primeiros testes usando o sistema online, com sucesso na maior parte, faltou alguns detalhes
+
+20/11/2018
+
+- Corrigi exibição de capas repetidas entre as locais e globais
+- Novos testes online, resolvidos alguns problemas
+- Implementados limites na navegação entre páginas quando há apenas 1 página ao todo
+- Implementado mecanismo que gerencia estado das cenas e sua visualização nos menus
+
+21/11/2018
+
+- Implementado sistema indexado de seleção da cena no grid, que vai para o menu de cenas, e volta para página correta usando o botão grid
+- Alterado padrão do arquivo global.txt para conter nome do artista e cena, além de um espaçador visual com ";"
+
+
+
 
 IDEIAS PRA DEPOIS DESSE RELEASE
 
