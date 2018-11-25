@@ -550,6 +550,11 @@ W/ofGraphics: ofPushStyle(): maximum number of style pushes << 32 reached, did y
 - Implementado sistema indexado de seleção da cena no grid, que vai para o menu de cenas, e volta para página correta usando o botão grid
 - Alterado padrão do arquivo global.txt para conter nome do artista e cena, além de um espaçador visual com ";"
 
+24/11/2018
+
+- Finalizado mecanismo de gestão e exibição das informações das cenas (Artista / Titulo)
+- Incluído Dan Wilcox (ofxPd) na lista de agradecimentos
+
 
 
 

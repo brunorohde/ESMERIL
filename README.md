@@ -26,6 +26,8 @@ Zack Lee - lib Ofelia - https://github.com/cuinjune/ofxOfelia
 
 Ed Kelly - NinjaTools - http://sharktracks.co.uk/html/ninjaTools.html
 
+Dan Wilcox - ofxPd - https://github.com/danomatika/ofxPd/
+
 Comunidade Pure Data
 
 &nbsp;
