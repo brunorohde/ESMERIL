@@ -554,10 +554,54 @@ W/ofGraphics: ofPushStyle(): maximum number of style pushes << 32 reached, did y
 
 - Finalizado mecanismo de gestão e exibição das informações das cenas (Artista / Titulo)
 - Incluído Dan Wilcox (ofxPd) na lista de agradecimentos
+- Gestão do botão PLAY do menu de cenas - implementado carregamento de cenas já locais
+
+25/11/2018
+
+- [gui_button] - corrigido bug na entrada de toques - quando variava de estado muito rápido não desabilitava propriamente os toques (por exemplo na mudança do estágio do app)
+- Mecanismo para desligar reprodução da cena quando volta para menu
+- Início do desenvolvimento do sistema de download dos pacotes .zip das cenas - identificado BUG NO OFELIA - método "clear" do [ofSaveURL] não funciona no linux, ao menos nessa versão do Ofelia
+- Primeiros testes com download funcionando - baixa arquivo zip num tempo razoável, e também já funciona método para apagar arquivo .zip
+
+26/11/2018
+
+- Testes com aplicativo no tablet - BUGS - stack overflow com tudo ligado - parece um problema com o excesso de memória consumida quando tá com tudo rodando, pode ter a ver com o uso de [ofPopStyle] e afins em excesso, vou fazer o teste removendo o máximo possível desses objetos pra ver se resolve
+
+*******************
+- ESCREVER SOBRE ESSE BUG - Parece o mesmo que impede de rodar o app nos android abaixo de 6, algo que tem relação com o cache do aplicativo pelos logs
+
+I/zygote: Do partial code cache collection, code=29KB, data=26KB
+I/zygote: After code cache collection, code=29KB, data=26KB
+          Increasing code cache capacity to 128KB
+          
+I/chatty: uid=10176(com.brunorohde.ESMERIL) GLThread 6347 identical 3 lines
+
+I/zygote: Do partial code cache collection, code=61KB, data=50KB
+I/zygote: After code cache collection, code=61KB, data=50KB
+          Increasing code cache capacity to 256KB
+*******************
+          
+- Milhares de testes deletando progressivamente o patch e nada de resolver - stack overflow permanente quase
+- Opa, parece que atrasar o início do carregamento das imagens melhorou - não quebrou
+- Tem muito a ver com atrasar o carregamento da memória - agora consegui rodar o patch quase inteiro sem problemas
+
+- Depois de atrasar o carregamento das imagens na memória, só consegui bugar a interface denovo abrindo e fechando (voltando pra menu) a cena algumas vezes seguidas e bem rápido 
+- Faltou resolver o download do arquivo global.txt - ele acusou não encontrar o arrastvj.org - deve ter que usar o www.arrastvj.org
+
+27/11/2018
+
+- Adicionado no AndroidManifest.xml - <uses-permission android:name="android.permission.INTERNET" /> - necessário para fazer downloads pelo app
+- Teste do app fazendo download do arquivo global e capas - OK, mas ainda tem problemas no patch, por que apesar de ter baixado o global.txt e as capas corretamente, não desenhou o menu certo, ficou cheio de bugs
+- Novo teste - resolvido, agora baixa arquivo global e exibe corretamente 4 capas - fazer teste com muitas capas/cenas pra ver se mantém estabilidade
+- [gui_menu_page] - Agora desenha path semitransparente nos slots onde não tem cena disponível
+
+28/11/2018
+
+- [gui_wait] - Desenvolvido sistema para desenhar um sinal de espera animado durante downloads de capas e cenas
+- [gui_menu_page] - Implementado [gui_wait] de acordo com estado das cenas durante abertura do app
 
 
-
-
+         
 IDEIAS PRA DEPOIS DESSE RELEASE
 
 - FX / MIXER / EDIÇÃO DE CENA / AUTOMAÇÕES
@@ -567,7 +611,6 @@ IDEIAS PRA DEPOIS DESSE RELEASE
 - Na seleção do áudio ativo na camada, se clica 2 vezes num áudio seta slices/range/offset e demais parâmetros (randoms, etc) para memória do momento em que a cena está, ou seta para 0 offset, e slices/range na divisão em beats do áudio
 - Ainda na seleção de áudio, implementar o slide entre camadas diferentes, inclusive identificando se é slide a partir de 1 ou 2 cliques, abrindo como está ou carregando da memória os dados de reprodução
 - Botões de interação funcionam quando o slicer está desligado, religando com a interação específica temporariamente enquanto mantém pressionado
-- Janela intermediária na abertura de cenas com texto/infos sobre a cena/artista
 - Popup final da cena - tocar denovo ou voltar para menu
 
 
