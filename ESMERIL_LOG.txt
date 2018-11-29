@@ -600,6 +600,10 @@ I/zygote: After code cache collection, code=61KB, data=50KB
 - [gui_wait] - Desenvolvido sistema para desenhar um sinal de espera animado durante downloads de capas e cenas
 - [gui_menu_page] - Implementado [gui_wait] de acordo com estado das cenas durante abertura do app
 
+29/11/2018
+
+- [gui_menu_scene] - Implementado mecanismo pra desenhar [gui_wait] e continuação do desenvolvimento do sistema para download/delete das cenas .zip
+
 
          
 IDEIAS PRA DEPOIS DESSE RELEASE
