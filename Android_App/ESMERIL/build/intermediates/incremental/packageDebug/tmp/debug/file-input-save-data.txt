@@ -1,0 +1,27 @@
+#Internal package file, do not edit.
+#Mon Dec 31 18:44:48 BRT 2018
+2.base=/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/transforms/stripDebugSymbol/debug/0
+5.set=NATIVE_RESOURCE
+0.path=lib/armeabi-v7a/libOFAndroidApp.so
+2.baseType=DIRECTORY
+3.base=/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/transforms/dexMerger/debug/0
+2.set=NATIVE_RESOURCE
+1.path=lib/x86/gdb.setup
+4.base=/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/transforms/stripDebugSymbol/debug/0
+count=6
+5.baseType=DIRECTORY
+2.path=lib/armeabi-v7a/gdb.setup
+5.base=/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/transforms/stripDebugSymbol/debug/0
+4.set=NATIVE_RESOURCE
+3.path=classes.dex
+3.baseType=DIRECTORY
+1.set=NATIVE_RESOURCE
+4.path=lib/x86/libOFAndroidApp_x86.so
+1.baseType=DIRECTORY
+5.path=lib/armeabi-v7a/gdbserver
+0.base=/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/transforms/stripDebugSymbol/debug/0
+0.baseType=DIRECTORY
+3.set=DEX
+1.base=/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/transforms/stripDebugSymbol/debug/0
+4.baseType=DIRECTORY
+0.set=NATIVE_RESOURCE

@@ -605,6 +605,42 @@ I/zygote: After code cache collection, code=61KB, data=50KB
 - [gui_menu_scene] - Implementado mecanismo pra desenhar [gui_wait] e continuação do desenvolvimento do sistema para download/delete das cenas .zip
 
 
+[OUTROS COMPROMISSOS]
+
+
+27/12/2018
+
+- Retomando trabalho - jornada do fim de ano e fim de era
+- BUG CORRIGIDO ? - TESTAR NA TABLET - Resolvido problema na mudança de página no menu de cenas que piscava a capa errada no fim do movimento entre páginas
+
+28/12/2018
+
+- Ainda não tinha resolvido mesmo o BUG anterior quando rodei na tablet, agora sim está resolvido!
+- Pesquisa de comunicação do patch com o ambiente OF para executar funções direto em OF controladas por dentro do patch
+- Pesquisa e início do desenvolvimento do sistema para desempacotar arquivo .zip das cenas baixadas ou adicionadas na mão
+
+29/12/2018
+
+- Pesquisa de addons para gestão de .zip no OF - ofxZipArchive, ofxZipUtils - Não consegui compilar pro android
+- Implementação do addon ofxZipPass (Antoine Rousseau 2014) no projeto para descompactar arquivos .zip com senha
+
+[Como compactar .zip com senha]
+zip --encrypt file.zip files    -- pede senha no terminal
+zip --password (password) file.zip files    -- entra senha direto como texto
+zip -r --password (password) file.zip folder    -- -r para compactar diretórios
+
+30 E 31/13/2018
+
+- Descobri que o ofxZipPass também descompacta arquivos .zip normais, sem senha, basta passar uma string vazia no campo da senha
+- Pesquisas e tentativas de usar o ofxZipPass - demorou um pouco pra conseguir compilar e usar como uma função dinâmica onde recebe um caminho do Pd e descompacta para a pasta correta
+
+03/01/2019
+
+- GITHUB - Incluído no repositório diretório com o código-fonte do aplicativo para Android - separados diretórios do Pd_Patch e Android_App
+- A pasta do aplicativo depois precisa limpar por que ficou muito pesada com todos os arquivos gerados pelo projeto na compilação - ver se apenas um Clean no projeto resolve ou como faz para limpar 
+
+
+
          
 IDEIAS PRA DEPOIS DESSE RELEASE
 

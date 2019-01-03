@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
+            "map": [
+                {
+                    "source": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/res/values-v11/styles.xml",
+                    "from": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "177",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "309"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "187"
+                    }
+                }
+            ]
+        }
+    ]
+}

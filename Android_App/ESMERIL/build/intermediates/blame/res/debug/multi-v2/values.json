@@ -1,0 +1,62 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/res/values/strings.xml",
+                    "from": {
+                        "startLines": "3,4,5",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "56,101,152",
+                        "endColumns": "44,50,48",
+                        "endOffsets": "96,147,196"
+                    },
+                    "to": {
+                        "startLines": "2,4,5",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,147,198",
+                        "endColumns": "44,50,48",
+                        "endOffsets": "95,193,242"
+                    }
+                },
+                {
+                    "source": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/addons/ofxAndroid/ofAndroidLib/build/intermediates/packaged_res/debug/values/values.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "105",
+                        "endColumns": "46",
+                        "endOffsets": "147"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "100",
+                        "endColumns": "46",
+                        "endOffsets": "142"
+                    }
+                },
+                {
+                    "source": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/res/values/styles.xml",
+                    "from": {
+                        "startLines": "6,15",
+                        "startColumns": "4,4",
+                        "startOffsets": "186,510",
+                        "endLines": "12,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "472,665"
+                    },
+                    "to": {
+                        "startLines": "6,13",
+                        "startColumns": "4,4",
+                        "startOffsets": "247,538",
+                        "endLines": "12,15",
+                        "endColumns": "12,12",
+                        "endOffsets": "533,693"
+                    }
+                }
+            ]
+        }
+    ]
+}

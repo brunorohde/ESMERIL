@@ -1,0 +1,4 @@
+#Thu Jan 03 16:03:17 BRT 2019
+base.0=/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

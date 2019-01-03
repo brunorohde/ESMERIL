@@ -28,6 +28,8 @@ Ed Kelly - NinjaTools - http://sharktracks.co.uk/html/ninjaTools.html
 
 Dan Wilcox - ofxPd - https://github.com/danomatika/ofxPd/
 
+Antoine Rousseau - ofxZipPass / ofxPof - https://github.com/Ant1r/
+
 Comunidade Pure Data
 
 &nbsp;

@@ -1,0 +1,7 @@
+set solib-search-path /home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/obj/local/x86:/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/libs/x86
+set sysroot /home/brunorohde/Sync/Android/android-ndk-r10e/platforms/android-19/arch-x86/
+directory /home/brunorohde/Sync/Android/android-ndk-r10e/platforms/android-19/arch-arm/usr/include
+directory /home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/src
+directory /home/brunorohde/Sync/Android/android-ndk-r10e/sources/cxx-stl/system
+directory /home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/libs/x86
+
