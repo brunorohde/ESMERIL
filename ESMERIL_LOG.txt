@@ -638,7 +638,25 @@ zip -r --password (password) file.zip folder    -- -r para compactar diretórios
 
 - GITHUB - Incluído no repositório diretório com o código-fonte do aplicativo para Android - separados diretórios do Pd_Patch e Android_App
 - A pasta do aplicativo depois precisa limpar por que ficou muito pesada com todos os arquivos gerados pelo projeto na compilação - ver se apenas um Clean no projeto resolve ou como faz para limpar 
+- Criação de métodos para descompatar arquivos com origem e destino dinâmicos via Pd
+- Teste mecanismo de unzip - SUCESSO!
+- Início da implementação do mecanismo de DOWNLOAD usando OFX
 
+04/01/2019
+
+- Método para baixar arquivo funciona corretamente
+- Método para cancelar download não funciona de jeito nenhum - tentativas usando todas as funções documentadas na base do OFX para gestão de pedidos URL
+- Tentativa de incorporar outro addon para gerir downloads e conseguir dar stop quando precisa - ofxSimpleHttp - NÃO ROLOU, não compila
+- Desenvolvido método para obter tamanho do arquivo durante download - comparar com tamanho total do arquivo .zip declarado no global.txt para saber andamento do download no Pd
+
+05/01/2019
+
+- Corrigido mecanismo do MENU GRID para evitar glitch igual ao MENU SCENE - ordem das atualizações das imagens das capas (com delay de 1 frame) no fim do movimento entre páginas
+- Inicialização - Refeito sistema para criação de pastas para uso do aplicativo em dispositivos Android - /storage/emulated/0/ESMERIL com subpastas REC e SCENES
+- [gui_progress] - Criada abstração para desenhar progresso do download das cenas, e para indicar avanço dos compassos dentro de cada momento da cena
+- MENU SCENE - Desabilita toques e escurece cabeçalho quando está em movimento
+- Alterada cor da fonte no cabeçalho de branco para o mesmo cinza das formas de onda - 212 219 229 220
+- DOWNLOAD/DELETE - Início do trabalho no mecanismo para baixar e deletar cenas - criado gerador de paths necessários no sistema a partir do nome base da cena
 
 
          
@@ -646,7 +664,6 @@ IDEIAS PRA DEPOIS DESSE RELEASE
 
 - FX / MIXER / EDIÇÃO DE CENA / AUTOMAÇÕES
 - Ableton Link
-- Downloads das cenas automático pelo app, incluindo mecanismo para descompactar os arquivos das cenas usando addon pra Zip do OFX
 - Alterações em volume no mixer refletem na escala das ondas exibidas na tela
 - Na seleção do áudio ativo na camada, se clica 2 vezes num áudio seta slices/range/offset e demais parâmetros (randoms, etc) para memória do momento em que a cena está, ou seta para 0 offset, e slices/range na divisão em beats do áudio
 - Ainda na seleção de áudio, implementar o slide entre camadas diferentes, inclusive identificando se é slide a partir de 1 ou 2 cliques, abrindo como está ou carregando da memória os dados de reprodução
