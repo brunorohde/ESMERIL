@@ -658,12 +658,19 @@ zip -r --password (password) file.zip folder    -- -r para compactar diretórios
 - Alterada cor da fonte no cabeçalho de branco para o mesmo cinza das formas de onda - 212 219 229 220
 - DOWNLOAD/DELETE - Início do trabalho no mecanismo para baixar e deletar cenas - criado gerador de paths necessários no sistema a partir do nome base da cena
 
+06/01/2019
+
+- DOWNLOAD/DELETE - Finalização do sistema com visualização de progresso durante download
+- UNZIP CENAS LOCAIS - Desenvolvido mecanismo para carregar cenas manualmente a partir de arquivos .zip
+- Upload de 4 cenas .zip e arquivo global.txt para servidor para testes amanhã no aplicativo
+
 
          
 IDEIAS PRA DEPOIS DESSE RELEASE
 
+- Melhorar gestão da memória - quando sai da cena e volta para menu, desligar dsp e esvaziar tabelas
+- Reordenar desenho do menu para desenhar primeiro cenas locais, depois fazer download do global e desenhar (permitir que user toque cena local enquanto baixa capas - internet ruim - e cenas)
 - FX / MIXER / EDIÇÃO DE CENA / AUTOMAÇÕES
-- Ableton Link
 - Alterações em volume no mixer refletem na escala das ondas exibidas na tela
 - Na seleção do áudio ativo na camada, se clica 2 vezes num áudio seta slices/range/offset e demais parâmetros (randoms, etc) para memória do momento em que a cena está, ou seta para 0 offset, e slices/range na divisão em beats do áudio
 - Ainda na seleção de áudio, implementar o slide entre camadas diferentes, inclusive identificando se é slide a partir de 1 ou 2 cliques, abrindo como está ou carregando da memória os dados de reprodução
