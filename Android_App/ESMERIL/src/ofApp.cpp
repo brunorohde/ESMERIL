@@ -60,15 +60,9 @@ void ofApp::setup()
     setupAudio(false);
     setupMidi();
     pd.openPatch("pd/main.pd");
-/*
+
     //ESMERIL MOD
-	ofLogVerbose("ofApp") << "trying to open " << ofToDataPath("This.zip") << endl;
-
-	ofxUnzipPass zip(ofToDataPath("This.zip"), "ofxZipPass");
-
-	if(zip.isOk()) zip.unzipTo(ofToDataPath(""));
-	else ofLogVerbose("ofApp") << "error opening " << ofToDataPath("This.zip");
-*/
+	ofRegisterURLNotification(this);        // Faz registro para poder obter notificações URL durante downloads
 }
 
 //--------------------------------------------------------------
@@ -324,8 +318,29 @@ void ofApp::print(const std::string& message) {
 }
 
 //--------------------------------------------------------------
+
+// ESMERIL MOD
+
 void ofApp::receiveBang(const std::string& dest)
 {
+    // Imprime mensagens recebidas do Pd de [send]'s inscritos
+    //ofLogNotice() << dest;
+
+    // Método getSize para obter tamanho do arquivo durante download e comparar com tamanho total para obter progresso
+    if (dest == "getSize"){
+        isOpen = file.open(downFile);               // Abre arquivo em download numa instância ofFile para acompanhar tamanho e retorna um bool para a variável isOpen, que permite perguntar tamanho do arquivo
+        if (isOpen) {                               // Se conseguir abrir arquivo .zip permite consultar tamanho
+            float size = (file.getSize());          // Obtém tamanho do arquivo em bytes
+            pd.sendFloat("getSizeFB", size);        // Envia tamanho em bytes (float) para Pd
+            file.close();                           // Fecha o arquivo na instância do ofFile criada para acompanhar o download
+            isOpen = false;                         // Envia sinal para bloquear leitura do tamanho do arquivo
+        }
+    } else if (dest == "downloadClear") {
+        ofRemoveAllURLRequests();
+        //ofRemoveURLRequest(downloadID);
+        //ofStopURLLoader();
+        ofLogNotice() << "RODANDO MÉTODO CLEAR";
+    }
 }
 
 void ofApp::receiveFloat(const std::string& dest, float value)
@@ -334,35 +349,47 @@ void ofApp::receiveFloat(const std::string& dest, float value)
 
 void ofApp::receiveSymbol(const std::string& dest, const std::string& symbol)
 {
+}
 
-// ESMERIL MOD
+void ofApp::receiveList(const std::string& dest, const List& list)
+{
 
     // Imprime mensagens recebidas do Pd de [send]'s inscritos
-    ofLogNotice() << dest;
-    ofLogNotice() << symbol;
+    //ofLogNotice() << dest;
+    //ofLogNotice() << list.toString();
 
-    // Desempacota arquivo de cena recebido do Pd
+    // Desempacota arquivo .zip para um caminho especificado pelo Pd
 
     if (dest == "unzip"){
-        ofxUnzipPass zip(ofToDataPath("pd/data/scenes/" + symbol), "");
-	    //if(zip.isOk()) zip.unzipTo(ofToDataPath("pd/data/scenes/"));
-
+        ofxUnzipPass zip(list.getSymbol(0), "");                // Cria objeto ofxUnzipPass com primeiro item da lista obtida do Pd e com password vazio
 	    if (zip.isOk()) {
-	        bool success = zip.unzipTo(ofToDataPath("pd/data/scenes/"));    // Descompacta arquivo com método unzipTo
+	        bool success = zip.unzipTo(list.getSymbol(1));      // Descompacta arquivo com método unzipTo e retorna bool sobre resultado
 	        if (!success) {
-                pd.sendFloat("unzipFB", 1);     // Se processo falha manda 0 para Pd
+                pd.sendFloat("unzipFB", 1);     // Se processo falha manda 1 para Pd
             }else if (success){
-                pd.sendFloat("unzipFB", 2);     // Se for bem sucedido manda 1 para Pd
+                pd.sendFloat("unzipFB", 2);     // Se for bem sucedido manda 2 para Pd
             }
 	    }
 	    else pd.sendFloat("unzipFB", 0);        // Se arquivo .zip não for aberto manda 0 para Pd
     }
 
+    // Faz download de um arquivo em servidor para um caminho especificado pelo Pd
+
+    else if (dest == "download") {
+        downloadID = ofSaveURLAsync(list.getSymbol(0), list.getSymbol(1));  // downloadID é um int retornado usado para comparar ID das respostas URL abaixo
+        downFile = list.getSymbol(1);
+    }
 }
 
-void ofApp::receiveList(const std::string& dest, const List& list)
-{
+// Método para receber resposta URL sobre o download
+
+void ofApp::urlResponse(ofHttpResponse &httpResponse){
+    if(httpResponse.request.getID() == downloadID){         // Checa ID do processo da resposta pra ver se é do downloadID
+        int status = httpResponse.status;                   // Armazena status num int
+        pd.sendFloat("downloadFB", status);                 // Envia status pro Pd
+    }
 }
+// ESMERIL MOD END
 
 void ofApp::receiveMessage(const std::string& dest, const std::string& msg, const List& list)
 {
@@ -638,7 +665,7 @@ void ofApp::setupAudio(bool isReinit)
         OF_EXIT_APP(1);
     }
     if (!isReinit) {
-        
+
         // load libs
         ofelia_setup();
         freeverb_tilde_setup();
@@ -646,7 +673,10 @@ void ofApp::setupAudio(bool isReinit)
         z_tilde_setup();
 
         // ESMERIL MOD
-        pd.subscribe("unzip");  // Registra [send]'s a receber do Pd
+        pd.subscribe("unzip");          // Registra [send]'s a receber do Pd
+        pd.subscribe("download");
+        pd.subscribe("downloadClear");
+        pd.subscribe("getSize");
 
         // add message receiver, required if you want to recieve messages
         pd.addReceiver(*this); // automatically receives from all subscribed sources

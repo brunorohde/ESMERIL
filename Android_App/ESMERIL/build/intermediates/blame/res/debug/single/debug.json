@@ -12,6 +12,10 @@
         "source": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/res/raw/ofdataresources.zip"
     },
     {
+        "merged": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/res/merged/debug/drawable_esmeril_icon.png.flat",
+        "source": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/res/drawable/esmeril_icon.png"
+    },
+    {
         "merged": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/res/merged/debug/layout_main.xml.flat",
         "source": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/addons/ofxAndroid/ofAndroidLib/build/intermediates/packaged_res/debug/layout/main.xml"
     },
@@ -26,9 +30,5 @@
     {
         "merged": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/res/merged/debug/layout_main_layout.xml.flat",
         "source": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/res/layout/main_layout.xml"
-    },
-    {
-        "merged": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/res/merged/debug/drawable_ic_launcher.png.flat",
-        "source": "/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/res/drawable/ic_launcher.png"
     }
 ]

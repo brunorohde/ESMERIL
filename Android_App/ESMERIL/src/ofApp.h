@@ -27,7 +27,6 @@
 #include "ofxPd.h"
 #include "ofxMidi.h"
 
-
 // a namespace for the Pd types
 using namespace pd;
 
@@ -61,7 +60,7 @@ class ofApp : public ofxAndroidApp, public PdReceiver, public PdMidiReceiver, pu
 		bool backPressed();
 		void okPressed();
 		void cancelPressed();
-		void deviceOrientationChanged(int newOrientation);
+		//void deviceOrientationChanged(int newOrientation);
 
 		// audio callbacks
         void audioReceived(float *input, int bufferSize, int nChannels);
@@ -114,6 +113,14 @@ class ofApp : public ofxAndroidApp, public PdReceiver, public PdMidiReceiver, pu
         ofxMidiIn midiIns[9];
         ofxMidiOut midiOuts[9];
         ofxPd pd;
+
+        // ESMERIL MOD
+        //ofURLFileLoader urlLoader;
+        void urlResponse(ofHttpResponse &httpResponse);
+        int downloadID;
+        ofFile file;
+        bool isOpen = false;
+        std::string downFile;
 
     private:
 

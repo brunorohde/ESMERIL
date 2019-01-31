@@ -1,4 +1,4 @@
-#N canvas 44 66 872 806 10;
+#N canvas 518 94 872 806 10;
 #X obj 219 669 *~;
 #X obj 264 653 line~;
 #X obj 219 550 +~ 1;
@@ -28,11 +28,11 @@
 #X obj 659 576 *~ 0.5;
 #X obj 659 595 cos~;
 #X obj 222 362 hsl 100 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 309 1;
+-1 -1 0 1;
 #X obj 266 464 / 44100;
 #X obj 219 426 *;
 #X obj 431 407 hsl 100 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 9591 0;
+-1 -1 0 0;
 #X obj 428 423 *;
 #X obj 214 161 s \$0-point;
 #X obj 309 180 s \$0-amp;
@@ -162,13 +162,13 @@
 #X obj 219 650 *~ 1;
 #X text 307 203 CURVA EXPONENCIAL;
 #X obj 309 161 expr pow($f1 \, 0.5);
-#X msg 587 107 set -1;
+#X msg 607 107 set -1;
 #X obj 214 142 change -1;
 #X obj 309 142 change -1;
 #X obj 442 142 change -1;
 #X text 692 387 ACELERA FASE PARA ATUALIZAR PONTO DE LEITURA, f 18
 ;
-#X text 585 150 REINICIA [change], f 8;
+#X text 605 150 REINICIA [change], f 8;
 #X msg 621 416 0;
 #X obj 428 442 sig~;
 #X text 634 359 CALCULA FASE DO GRÃO;
@@ -213,9 +213,10 @@
 #X msg 123 171 0;
 #X text 109 190 ENQUANTO ESTIVER DESLIGANDO NÃO RECEBE NOVOS TOQUES
 , f 27;
-#X obj 587 126 t a a a;
+#X obj 607 126 t a a a;
 #X obj 48 31 r \$1-granularBus;
 #X text 157 31 RECEBE CONTROLES DA INTERFACE;
+#X obj 607 88 r \$2-changeReset;
 #X connect 0 0 57 0;
 #X connect 1 0 0 1;
 #X connect 2 0 4 0;
@@ -348,3 +349,4 @@
 #X connect 117 1 70 0;
 #X connect 117 2 71 0;
 #X connect 118 0 59 0;
+#X connect 120 0 68 0;

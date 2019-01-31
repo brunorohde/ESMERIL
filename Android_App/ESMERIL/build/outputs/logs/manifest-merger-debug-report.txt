@@ -55,7 +55,7 @@ ADDED from /home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/a
 	android:largeHeap
 		ADDED from /home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/AndroidManifest.xml:17:9-33
 	android:icon
-		ADDED from /home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/AndroidManifest.xml:19:9-45
+		ADDED from /home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/AndroidManifest.xml:19:9-46
 	android:allowBackup
 		ADDED from /home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/AndroidManifest.xml:18:9-35
 	android:theme

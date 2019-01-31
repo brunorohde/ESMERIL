@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Dec 31 18:44:48 BRT 2018
+#Wed Jan 30 23:20:38 BRT 2019
 2.base=/home/brunorohde/Sync/OpenFrameworks/of_v0.9.8_android_release_novo/apps/myApps/ESMERIL/build/intermediates/transforms/stripDebugSymbol/debug/0
 5.set=NATIVE_RESOURCE
 0.path=lib/armeabi-v7a/libOFAndroidApp.so

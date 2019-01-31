@@ -25,6 +25,24 @@ wget --mirror -p --convert-links -erobots=off --no-parent http://www.dmarchi.org
 mkdir CONVERTIDOS && find -type f -name "*.wav" | xargs -n 1 bash -c 'ffmpeg -i "$0" -vn -c:a pcm_s16le -af aresample=resampler=soxr -ar 44100 -ac 1 "CONVERTIDOS/${0%.*}.wav"'
 
 
+
+REFERÊNCIA DE PESQUISA
+
+- Dicas de eficiência usando LibPd, comentários de um desenvolvedor da RjDj
+https://www.reddit.com/r/puredata/comments/4n71w7/can_a_patch_be_too_complicated_to_use_with/
+
+* learn to understand what types of processes and individual objects are CPU expensive - some off the top of my head : tabread4~ , cos~ , using lots of oscillators, fft type stuff, - try to write the same processes with cheaper objects rather more expensive ones ( even though it may be much easier )
+
+* use switch~ extensively to resource manage exactly what needs to be on and off in the patch at any one moment, always be aware of how much stuff is on at any one time, monitor CPU loading using cputime, look at short term, peaks and also long averages
+
+* in LibPd specifically - don't use throw~ catch~ send~ receive~ where possible, they are apparently quite expensive, its better to make direct audio connections
+
+* synthesise sometimes, but also use sound file playback from RAM, perhaps in various algorithmically controlled ways
+
+* working with mono files / voices where possible
+
+
+
 03/05/2018
 
 - Pesquisa de patchs de Pd para geração musical - Ed Kelly (ninjaTools)
@@ -664,31 +682,58 @@ zip -r --password (password) file.zip folder    -- -r para compactar diretórios
 - UNZIP CENAS LOCAIS - Desenvolvido mecanismo para carregar cenas manualmente a partir de arquivos .zip
 - Upload de 4 cenas .zip e arquivo global.txt para servidor para testes amanhã no aplicativo
 
+07/01/2019
 
-         
-IDEIAS PRA DEPOIS DESSE RELEASE
+- Testes com aplicativo na tablet - vários problemas - deixei como estava para escrever artigo
+- Reunião com Rafa para finalizar ícones e outras necessidades do design
 
+LOG DO ERRO PARA OBTER TAMANHO DO ARQUIVO EM DOWNLOAD:
+
+E/StudioProfiler: JVMTI error: 15(JVMTI_ERROR_THREAD_NOT_ALIVE) 
+D/ViewRootImpl@da9bcc7[OFActivity]: ViewPostIme pointer 1
+E/ofFile: getSize(): unable to get size of ""/storage/emulated/0/Android/data/com.brunorohde.ESMERIL/files/pd/data/scenes/0002_GLERM.zip"": boost::filesystem::file_size: No such file or directory: "/storage/emulated/0/Android/data/com.brunorohde.ESMERIL/files/pd/data/scenes/0002_GLERM.zip"
+
+08/01/2019
+
+- Inclusão dos novos ícones produzidos
+
+28/01/2019
+
+- Atualizada renderização das fontes de artista e título nos cabeçalhos, para dar mais legibilidade em dispositivos pequenos
+- Corrigido bug que não permitia gerar toques com granular até mudar número de slices na camada
+- Desligado mecanismo de download do arquivo "global.txt" e download de cenas pelo app até próximo release - por enquanto só download pelo site e descompacta cena via app
+- Corrigido problema na atualização dos parâmetros na mudança de momentos - implementado sistema para desligar quantização quando ocorre mudança de momento da cena
+- Implementada quantização no beat/4 para possibilitar mudanças ainda mais rápidas na interface
+
+29/01/2019
+
+- COMEMO Sistema - melhorado mecanismo para atualizar parâmetros a partir do respectivo [bit_memo] de modo ordenado pelos índices - antes carregava fora da ordem, por exemplo com os parâmetros range e slices, que vinham nessa ordem, e zuavam o mecanismo de reprodução, por que primeiro precisa saber os slices, depois o range relativo
+- ÍCONE DO APP - incluído ícone do ESMERIL na pasta e manifesto do aplicativo Android
+- UNZIP - testes do mecanismo - consegui descompactar uma pasta corretamente, mas no fim do processo não volta botão para o estado que devia nem foi para o menu de grid; mais de uma cena não rolou
+
+30/01/2019
+
+- UNZIP - finalizado e testado processo de descompactar cenas da pasta local
+- REC - religado mecanismo de gravação
+- CRÉDITOS - incluída tela de créditos aberta com toque na marca do ESMERIL no menu grid; para voltar ao menu grid basta tocar em qualquer área da tela de créditos
+- Compilada versão 0.1-beta2 para lançamento no Digitália 2019 - com sistema de unzip OK e tela de créditos
+
+
+TO DO
+
+- Revisar mecanismo de reprodução (diferenças de fase? entre reproduções da mesma cena)
+- Momentos com memória da fase
+- Navegação manual livre nos momentos da cena (mudança quantizada no beat)
+- Granular ativo muda botão de modo para estado 2
+- Incluir no [bit_track] memória de ganho e pan por áudio, para além do mixer final que ficará exposto na interface
+- Comentários no meta e separador visual para sequência master
+- Grava estado do BPM no momento
 - Melhorar gestão da memória - quando sai da cena e volta para menu, desligar dsp e esvaziar tabelas
 - Reordenar desenho do menu para desenhar primeiro cenas locais, depois fazer download do global e desenhar (permitir que user toque cena local enquanto baixa capas - internet ruim - e cenas)
-- FX / MIXER / EDIÇÃO DE CENA / AUTOMAÇÕES
 - Alterações em volume no mixer refletem na escala das ondas exibidas na tela
 - Na seleção do áudio ativo na camada, se clica 2 vezes num áudio seta slices/range/offset e demais parâmetros (randoms, etc) para memória do momento em que a cena está, ou seta para 0 offset, e slices/range na divisão em beats do áudio
 - Ainda na seleção de áudio, implementar o slide entre camadas diferentes, inclusive identificando se é slide a partir de 1 ou 2 cliques, abrindo como está ou carregando da memória os dados de reprodução
 - Botões de interação funcionam quando o slicer está desligado, religando com a interação específica temporariamente enquanto mantém pressionado
 - Popup final da cena - tocar denovo ou voltar para menu
-
-
-REFERÊNCIA DE PESQUISA
-
-- Dicas de eficiência usando LibPd, comentários de um desenvolvedor da RjDj
-https://www.reddit.com/r/puredata/comments/4n71w7/can_a_patch_be_too_complicated_to_use_with/
-
-* learn to understand what types of processes and individual objects are CPU expensive - some off the top of my head : tabread4~ , cos~ , using lots of oscillators, fft type stuff, - try to write the same processes with cheaper objects rather more expensive ones ( even though it may be much easier )
-
-* use switch~ extensively to resource manage exactly what needs to be on and off in the patch at any one moment, always be aware of how much stuff is on at any one time, monitor CPU loading using cputime, look at short term, peaks and also long averages
-
-* in LibPd specifically - don't use throw~ catch~ send~ receive~ where possible, they are apparently quite expensive, its better to make direct audio connections
-
-* synthesise sometimes, but also use sound file playback from RAM, perhaps in various algorithmically controlled ways
-
-* working with mono files / voices where possible
+- Ableton Link ou outro mecanismo de sincronia
+- FX / MIXER / EDIÇÃO DE CENA / AUTOMAÇÕES 

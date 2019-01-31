@@ -1,0 +1,36 @@
+GLERM S.
+A HORTA PROMETIDA PARA A GERAÇÃO GAMER
+180 4
+0 0 0 0 0 1 1 b 2 b 2 2 3 3 3 3 b 3 b 3 4 4 4 4 5 5 5 5 b 0 6 6 6 6 b 7 b 1 b 7 8 8 8 8 8 8 8 9 9 9 b 1 10 10 10 10 10 11 11 12 12 13 14 15 16 17 17 17 18 18 b 18 18 20 20 20 21 21 22 b 23 23 23 23 b 0 b 24 24 24 24 
+glerm_A01.wav
+glerm_A02.wav
+glerm_A03.wav
+glerm_A04.wav
+glerm_A05.wav
+glerm_A06.wav
+glerm_A07.wav
+glerm_A08.wav
+glerm_B01.wav
+glerm_B02.wav
+glerm_B03.wav
+glerm_B04.wav
+glerm_B05.wav
+glerm_B06.wav
+glerm_B07.wav
+glerm_B08.wav
+glerm_C01.wav
+glerm_C02.wav
+glerm_C03.wav
+glerm_C04.wav
+glerm_C05.wav
+glerm_C06.wav
+glerm_C07.wav
+glerm_C08.wav
+glerm_D01.wav
+glerm_D02.wav
+glerm_D03.wav
+glerm_D04.wav
+glerm_D05.wav
+glerm_D06.wav
+glerm_D07.wav
+glerm_D08.wav
