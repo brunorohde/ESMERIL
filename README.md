@@ -30,11 +30,13 @@ Dan Wilcox - ofxPd - https://github.com/danomatika/ofxPd/
 
 Antoine Rousseau - ofxZipPass / ofxPof - https://github.com/Ant1r/
 
+Peter Brinkmann - libpd - https://github.com/libpd/libpd
+
 Comunidade Pure Data
 
 &nbsp;
 
-Copyleft 2018 Bruno Rohde - Licença GPLV3 -  http://www.gnu.org/licenses/gpl.txt
+Copyleft 2018-2019 Bruno Rohde - Licença GPLV3 -  http://www.gnu.org/licenses/gpl.txt
 
 This program is free software; you can either redistribute or
 edit it under the GNU General Public License terms as published
