@@ -535,7 +535,7 @@ f 19;
 #X obj 317 379 sel 0;
 #X obj 281 341 gui_wait \$1;
 #X obj 501 360 gui_button \$1 0 0 1 1 0 0 1 0 1;
-#N canvas 130 211 1209 480 PARAMS 0;
+#N canvas 167 317 1209 480 PARAMS 0;
 #X obj 120 255 *;
 #X obj 41 255 *;
 #X obj 269 31 inlet ID;

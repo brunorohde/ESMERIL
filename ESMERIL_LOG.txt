@@ -719,6 +719,12 @@ E/ofFile: getSize(): unable to get size of ""/storage/emulated/0/Android/data/co
 - Compilada versão 0.1-beta2 para lançamento no Digitália 2019 - com sistema de unzip OK e tela de créditos
 
 
+20/05/2019
+
+- BUG RESOLVIDO - Imagens das capas e estados das cenas não carregavam quando mudava de página no menu grid
+- BUG RESOLVIDO - Travamento dos cliques nas capas do grid quando mudava de página
+
+
 TO DO
 
 - Revisar mecanismo de reprodução (diferenças de fase? entre reproduções da mesma cena)
