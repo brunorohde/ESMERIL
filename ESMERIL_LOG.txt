@@ -725,6 +725,12 @@ E/ofFile: getSize(): unable to get size of ""/storage/emulated/0/Android/data/co
 - BUG RESOLVIDO - Travamento dos cliques nas capas do grid quando mudava de página
 
 
+26/05/2019
+
+- [bit_grain] e [gui_granulartouch] - Alterada a curva de amplitude em relação ao movimento na interface, deixando linear no áudio e mudando curva na interface para [expr pow($f1, 0.5)] (era 0.25 antes)
+
+
+
 TO DO
 
 - Revisar mecanismo de reprodução (diferenças de fase? entre reproduções da mesma cena)
